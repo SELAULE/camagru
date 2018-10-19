@@ -1,7 +1,11 @@
 <?php
-	include 'core/init.php';
+	require_once 'core/init.php';
 
-	DB::getInstance();
-	//echo Config::get('mysql/host'); //127.0.0.1
-	//echo "connected";
+	$user = DB::getInstance()->get('user', array('username', '=', 'alex'));
+
+	if ($user->count()) {
+		echo "No user";
+	} else {
+		echo "Okay";
+	}
 ?>
