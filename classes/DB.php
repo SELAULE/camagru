@@ -70,6 +70,54 @@
 				return $this->delete( 'SELECT *', $table, $where);
 			}
 
+			public function insert($table, $fields = array()) {
+					$keys = array_keys($fields);
+					$value = null;
+					$x = 1;
+
+					foreach ($fields as $field) {
+						$value .= '?'; //Apends "?" to $value
+						if ($x < count($fields))
+							$value .= ','; //Apends "," after every "?"
+						$x++;
+					}
+					$sql = "INSERT INTO users(`" . implode('` , `', $keys) . "`) VALUES({$value})";
+					if (!$this->query($sql, $fields)->error()){
+						return true;
+					}
+				return false;
+			}
+
+			public function update($table, $id, $fields) {
+				$set = '';
+				$x = 1;
+
+				foreach ($fields as $name => $value) {
+					$set .= "{$name} = ?";
+					if($x < count($fields)) {
+						$set .= ', ';
+					}
+					$x++;
+				}
+				$sql = "UPDATE {$table} SET {$set} WHERE user_id = {$id}";
+
+				
+
+				if (!$this->query($sql, $fields)->error()){
+					return true;
+				}
+				//echo $sql;
+				return false;
+			}
+
+			public function results() {
+				return $this->_results;
+			}
+
+			public function first() {
+				return $this->results()[0];
+			}
+
 			public function error() {
 				return $this->_error;
 			}
