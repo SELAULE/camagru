@@ -11,6 +11,7 @@
 		private function __construct(){
 			try {
 				$this->_pdo = new PDO('mysql:host=' . Config::get('mysql/host') . ';dbname=' .Config::get('mysql/db'), Config::get('mysql/username'), Config::get('mysql/password'));
+				$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);			
 			} catch (PDOException $e) {
 			die ($e->getMessage());
 		}
@@ -33,6 +34,7 @@
 							$x++;
 						}
 					}
+					//print_r($this->_query);
 					if ($this->_query->execute()) { //if they query is executed
 						$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 						$this->_count = $this->_query->rowCount();
@@ -68,6 +70,59 @@
 
 			public function delete ($table, $where) {
 				return $this->delete( 'SELECT *', $table, $where);
+			}
+
+			public function insert($table, $fields = array()) {
+				if (count($fields)) {
+					$keys = array_keys($fields);
+					$value = '';
+					$x = 1;
+
+					foreach ($fields as $field) {
+						$value .= '?'; //Apends "?" to $value
+						if ($x < count($fields)){
+							$value .= ', '; //Apends "," after every "?"
+						}
+						$x++;
+					}
+					$sql = "INSERT INTO {$table} (`" . implode('`, `', $keys) . "`) VALUES({$value})";
+					if (!$this->query($sql, $fields)->error()){
+						return true;
+					}
+					
+				}
+				/* echo $sql; */
+				return false;
+			}
+
+			public function update($table, $id, $fields) {
+				$set = '';
+				$x = 1;
+
+				foreach ($fields as $name => $value) {
+					$set .= "{$name} = ?";
+					if($x < count($fields)) {
+						$set .= ', ';
+					}
+					$x++;
+				}
+				$sql = "UPDATE {$table} SET {$set} WHERE user_id = {$id}";
+
+				
+
+				if (!$this->query($sql, $fields)->error()){
+					return true;
+				}
+				//echo $sql;
+				return false;
+			}
+
+			public function results() {
+				return $this->_results;
+			}
+
+			public function first() {
+				return $this->results()[0];
 			}
 
 			public function error() {
