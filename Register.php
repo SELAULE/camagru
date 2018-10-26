@@ -40,7 +40,7 @@
 					));
 					
 					Session::flash('Home', 'You have successfully registered');
-					Redirect::to('index.php');
+					Redirect::to('cam/cam.php');
 				} catch(Exception $e) {
 					die($e->getMessage);
 				}
@@ -66,7 +66,7 @@
 	<form action="" method="post">
 		<div class="field">
 			<label for="username">Username</label>
-			<input type="text" name="username" id="username" value="<?php echo escape(Input::get('username')); ?>" autocomplete="off" placeholder="email address">
+			<input type="text" name="username" id="username" value="" autocomplete="off" placeholder="email address">
 		</div>
 
 		<div class="field">
@@ -81,7 +81,7 @@
 
 		<div class="field">
 			<label for="name">Name</label>
-			<input type="text" name="name" id="name" value="<?php echo escape(Input::get('name')); ?>" placeholder="name">
+			<input type="text" name="name" id="name" value="" placeholder="name">
 		</div>
 
 		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">

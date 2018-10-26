@@ -25,7 +25,6 @@
             console.log(`Error: ${err}`)
         });
 
-        //startup() {
             video.addEventListener('canplay', function(ev){
             if (!streaming) {
                 height = video.videoHeight / (video.videoHeight/width);
@@ -75,5 +74,3 @@
                 clearphoto();
             }
         }
-    //}
-//})

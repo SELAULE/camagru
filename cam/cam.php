@@ -5,12 +5,20 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Page Title</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://fonts.google.com/" rel="stylesheet" type="text/css">
- 	<link rel="stylesheet" type="text/css" media="screen" href="cam.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+	 <link rel="stylesheet" type="text/css" media="screen" href="cam.css" />
+	 <style>
+		 h1{
+			font-family: 'Tangerine', serif;
+			font-size: 48px;
+			text-shadow: 4px 4px 4px #aaa;
+			text-align: center;
+		 }
+	 </style>
 </head>
 <body>
 	<div class="nav">
-		<h1>Camagru</h1>
+		<h1 style="color:white" >Camagru</h1>
 	</div>
 	<div class="top-con">
 		<video id="video">Can't Play</video>
