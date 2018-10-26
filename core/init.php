@@ -5,7 +5,7 @@ $GLOBALS['config'] = array(
 	'mysql' => array (
 		'host' => 'localhost',
 		'username' => 'root',
-		'password' => 'root101',
+		'password' => '',
 		'db' => 'camagru'
 	),
 	'remember' => array (
@@ -21,6 +21,7 @@ $GLOBALS['config'] = array(
 spl_autoload_register (function ($class) {
 	require_once 'classes/' . $class . '.php';
 });
+
 
 	require_once 'functions/sanitaze.php';
 ?>

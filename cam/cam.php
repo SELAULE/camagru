@@ -6,7 +6,7 @@
 	<title>Page Title</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.google.com/" rel="stylesheet" type="text/css">
-<!-- 	<link rel="stylesheet" type="text/css" media="screen" href="cam.css" /> -->
+ 	<link rel="stylesheet" type="text/css" media="screen" href="cam.css" />
 </head>
 <body>
 	<div class="nav">

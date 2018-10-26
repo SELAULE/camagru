@@ -1,17 +1,4 @@
-/* const video = document.getElementById('video');
 
-function cam() {
-    navigator.mediaDevices.getUserMedia({
-        audio: false,
-        video: { width: 1280, height: 720 }
-    }).then(stream => {
-        video.srcObject = stream;
-    }).catch(console.error)
-}
-
-window.addEventListener('load', cam, false);
-/*  */
-//window.onload(function() {
     let width = 500,
         height = 0,
         filter = 'none',
@@ -21,14 +8,12 @@ window.addEventListener('load', cam, false);
     const canvas = document.getElementById('canvas');
     const photos = document.getElementById('photos');
     const photoBut = document.getElementById('photo-but');
-    /*const clearBut = document.getElementById('clear-but');
-    const FilteBut = document.getElementById('Filter-but'); */
+    const clearBut = document.getElementById('clear-but');
+    const FilterBut = document.getElementById('photo-fil');
 
     navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
-          /*   width: {ideal: 1280},
-            height: {ideal: 720} */
             facingMode: "user"
         }        
     })
@@ -36,7 +21,9 @@ window.addEventListener('load', cam, false);
             video.srcObject = stream;
             
             video.play();
-        }) .catch(console.log(`Error: ${err}`));
+        }) .catch(function(err) {
+            console.log(`Error: ${err}`)
+        });
 
         //startup() {
             video.addEventListener('canplay', function(ev){
@@ -56,26 +43,34 @@ window.addEventListener('load', cam, false);
             ev.preventDefault();
         }, false);
 
-        clearphoto();
-
-        function clearphoto() {
-            var context = canvas.getContext('2d');
-            context.fillStyle = "#AAA"; //light grey colour
-            context.fillRect(0, 0, canvas.width, canvas.height);
-
-            var data = canvas.toDataURL('image/png');
-            photos.setAttribute('src', data);
-        }
+        clearBut.addEventListener('click', function(ev) {
+            photos.innerHTML = '';
+            filter = 'none';
+            video.style.filter = filter;
+            FilterBut.selectedIndex = 0;
+        });
+        FilterBut.addEventListener('change', function(ev) {
+            filter = ev.target.value;
+            video.style.filter = filter;
+            ev.preventDefault();
+        });
 
         function takepicture() {
-            var context = canvas.getContext('2');
+            //console.log('pic'); // remove!!! 
+            const context = canvas.getContext('2d');
             if (width && height) {
                canvas.width = width;
                canvas.height = height;
                context.drawImage(video, 0, 0, width, height);
 
-               var data = canvas.toDataURL('image/png');
-               photos.setAttribute('src', data);
+               const data = canvas.toDataURL('image/png');
+
+               const img = document.createElement('img');
+               img.setAttribute('src', data);
+
+               img.style.filter = filter;
+
+               photos.appendChild(img);
             } else {
                 clearphoto();
             }

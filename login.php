@@ -11,7 +11,14 @@
 			));
 
 			if ($validation->passed()) {
-				// log in
+				$user = new User();
+				$login = $user->login(Input::get('username'), Input::get('password'));
+
+				if ($login) {
+					echo "Success";
+				} else {
+					echo "Login Failed";
+				}
 			} else {
 				foreach ($validation->errors() as $error) {
 					echo $error, '<br>';
@@ -42,9 +49,9 @@
 			<label for="password">Password</label>
 			<input type="password" name="password" id="password" autocomplete="off" placeholder="password">
 		</div>
-
+		
+		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 		<input type="submit" value="Log in">
-		<!--<input type="hidden" name="token" value="<?php echo Token::generate(); ?>"> -->
 
 	</form>
 </body>
