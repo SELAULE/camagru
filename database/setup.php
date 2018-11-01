@@ -1,5 +1,6 @@
 <?php
     include "database.php";
+    require_once '../core/init.php';
 
     try {
         $dbh = new PDO("mysql:host=$DB_DNS", $DB_USER, $DB_PASSWORD);
@@ -54,6 +55,7 @@
             `img_id` INT NOT NULL,
             PRIMARY KEY(`comment_id`)
         )");
+        Redirect::to('../Register.php');
     } catch (PDOException $e) {
         die("DB ERROR: ". $e->getMessage());
     }

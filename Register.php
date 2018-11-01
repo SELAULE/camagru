@@ -61,32 +61,64 @@
 	<title>Register</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" media="screen" href="login.css" />
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+	<style>
+		body{
+			background-color: pink;
+			background-image: url("http://wall2born.com/data/out/145/image-48363515-photo-backgrounds.jpg");
+		}
+		#form{
+			border: 2px black;
+		}
+		#username{
+			border-radius: 5px;
+			margin: 3px;
+			box-shadow: 5px 5px 5px #aaaaaa;
+		}
+ 		#password{
+			border-radius: 5px;
+			margin: 3px;
+			box-shadow: 5px 5px 5px #aaaaaa;
+		}
+		#Confirm_Password{
+			border-radius: 5px;
+			margin: 3px;
+			box-shadow: 5px 5px 5px #aaaaaa;
+		}
+		#name{
+			border-radius: 5px;
+			margin: 3px;
+			box-shadow: 5px 5px 5px #aaaaaa;
+	}
+	label{
+		font-family: 'Playfair Display', serif;
+	}
+	</style>
 </head>
-<body>
-	<form action="" method="post">
-		<div class="field">
-			<label for="username">Username</label>
-			<input type="text" name="username" id="username" value="" autocomplete="off" placeholder="email address">
-		</div>
+<body >
+		<form action="" method="post" id="form">
+			<div class="username">
+				<label for="username">Username</label>
+				<input type="text" name="username" id="username" value="" autocomplete="off" placeholder="email address">
+			</div>
 
-		<div class="field">
-			<label for="password">Password</label>
-			<input type="password" name="password" id="password" placeholder="password">
-		</div>
+			<div class="password">
+				<label for="password">Password</label> 
+				<input type="password" name="password" id="password" placeholder="password">
+			</div>
 
-		<div class="Confirm Password">
-			<label for="Confirm_Password">Confirm Password</label>
-			<input type="password" name="Confirm_Password" id="Confirm_Password" value="" placeholder="confirm_password">
-		</div>
+			<div class="Confirm_Password">
+				<label for="Confirm_Password">Confirm Password</label>
+				<input type="password" name="Confirm_Password" id="Confirm_Password" value="" placeholder="confirm_password">
+			</div>
 
-		<div class="field">
-			<label for="name">Name</label>
-			<input type="text" name="name" id="name" value="" placeholder="name">
-		</div>
+			<div class="name">
+				<label for="name">Name</label>
+				<input type="text" name="name" id="name" value="" placeholder="name">
+			</div>
 
-		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-		<input type="submit" value="Register">
-
-	</form>
+			<input type="hidden" name="token" id="name" value="<?php echo Token::generate(); ?>">
+			<input type="submit" value="Register">
+		</form>
 </body>
 </html>
