@@ -19,7 +19,7 @@
 					'required' => true,
 					'matches' => 'password'
 				),
-				'name' => array(
+				'e-mail' => array(
 					'required' => true,
 					'min' => 2,
 					'max' => 50
@@ -34,9 +34,9 @@
 						'username' => Input::get('username'),
 						'password' => Hash::make(Input::get('password')),
 						'salt' => 'salt',
-						'name' => Input::get('name'),
+						'e-mail' => Input::get('e-mail'),
 						'joined' => date('Y-m-d H:i:s'),
-						'group' => 1 
+						'group' => 0
 					));
 					
 					Session::flash('Home', 'You have successfully registered');
@@ -63,9 +63,11 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="login.css" />
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 	<style>
-		body{
-			background-color: pink;
-			background-image: url("http://wall2born.com/data/out/145/image-48363515-photo-backgrounds.jpg");
+		.everything{
+			background-image: url("img/R-back-gro.jpg");
+			width: auto;
+			height: auto;
+			repeat: none;
 		}
 		#form{
 			border: 2px black;
@@ -85,7 +87,7 @@
 			margin: 3px;
 			box-shadow: 5px 5px 5px #aaaaaa;
 		}
-		#name{
+		#e-mail{
 			border-radius: 5px;
 			margin: 3px;
 			box-shadow: 5px 5px 5px #aaaaaa;
@@ -93,13 +95,44 @@
 	label{
 		font-family: 'Playfair Display', serif;
 	}
+	#reg-butt{
+      width: 100px;
+      height: 40px;
+      border-radius: 30px;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #344b70;
+      outline: none;
+      border: none;
+      background: rgba(0, 128, 0, 0.9);
+      cursor: pointer;
+      transition: all .3s;
+  
+      &:hover{
+        background: rgba(0, 128, 0, 1);
+      }
+	}
+	&--bg{
+      width: 100%;
+      height: 100%;
+  
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
 	</style>
 </head>
-<body >
+<body class="everything">
+
 		<form action="" method="post" id="form">
+		<!-- <div class="login--bg">
+			<img src="https://www.south-africa-info.co.za/info/businesses/7353/images/bottom_images/15.jpg" alt="">
+		</div> -->
 			<div class="username">
 				<label for="username">Username</label>
-				<input type="text" name="username" id="username" value="" autocomplete="off" placeholder="email address">
+				<input type="text" name="username" id="username" value="" autocomplete="off" placeholder="Username">
 			</div>
 
 			<div class="password">
@@ -112,13 +145,13 @@
 				<input type="password" name="Confirm_Password" id="Confirm_Password" value="" placeholder="confirm_password">
 			</div>
 
-			<div class="name">
-				<label for="name">Name</label>
-				<input type="text" name="name" id="name" value="" placeholder="name">
+			<div class="e-mail">
+				<label for="e-mail">Name</label>
+				<input type="text" name="e-mail" id="e-mail" value="" placeholder="e-mail">
 			</div>
 
 			<input type="hidden" name="token" id="name" value="<?php echo Token::generate(); ?>">
-			<input type="submit" value="Register">
+			<input type="submit" value="Register" id="reg-butt">
 		</form>
 </body>
 </html>

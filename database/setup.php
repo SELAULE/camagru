@@ -1,6 +1,6 @@
 <?php
     include "database.php";
-    require_once '../core/init.php';
+  /*   require_once '../core/init.php'; */
 
     try {
         $dbh = new PDO("mysql:host=$DB_DNS", $DB_USER, $DB_PASSWORD);
@@ -12,7 +12,7 @@
             `username` VARCHAR(20) NOT NULL,
             `password` VARCHAR(64) NOT NULL,
             `salt` VARCHAR(32) NOT NULL,
-            `name` VARCHAR(50) NOT NULL,
+            `e-mail` VARCHAR(50) NOT NULL,
             `joined` DATETIME NOT NULL,
             `group` INT NOT NULL,
             PRIMARY KEY(`user_id`)
@@ -55,7 +55,7 @@
             `img_id` INT NOT NULL,
             PRIMARY KEY(`comment_id`)
         )");
-        Redirect::to('../Register.php');
+        header("location: ../Register.php");
     } catch (PDOException $e) {
         die("DB ERROR: ". $e->getMessage());
     }
