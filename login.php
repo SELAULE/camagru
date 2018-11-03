@@ -16,7 +16,8 @@
 
 				if ($login) {
 					/* echo "Success"; */
-					Redirect::to('cam/cam.php');
+					/* Redirect::to('cam/cam.php'); */
+					Redirect::to('index.php');
 				} else {
 					echo "Login Failed";
 				}

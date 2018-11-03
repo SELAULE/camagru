@@ -36,6 +36,11 @@
 		</select>
 			<button id="clear-but">Clear</button>
 			<canvas id="canvas"></canvas>
+			<form action="upload.php" method="post" enctype="multipart/form-data">
+        Select image to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
 	</div>
 	
 	<div class="bottom-con">
