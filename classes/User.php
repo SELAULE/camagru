@@ -15,7 +15,7 @@
 				if (Session::exists($this->_sessionName)) {
 					$user = Session::get($this->_sessionName);
 					if ($this->find($user)) {
-						$this->isLoggedIn = true;
+						$this->_isLoggedIn = true;
 					} else {
 						//Logout
 					}
@@ -44,16 +44,24 @@
 			return false;
 		}
 
-		public function login($username = null, $password = null) {
+		public function login($username = null, $password = null, $remember) {
 			$user = $this->find($username);
 
 			if ($user){
 				if ($this->data()->password === Hash::make($password, $this->data()->salt)) {
 					Session::put($this->_sessionName, $this->data()->user_id);
+					if ($remember) {
+						$hash = Hash::unique();
+						$hashCheck = $this->_db->get
+					}
 					return true;
 				} 
 			}
 			return false;
+		}
+
+		public function logout() {
+			Session::delete($this->_sessionName);
 		}
 
 		public function data() {
@@ -61,7 +69,7 @@
 		}
 
 		public function isLoggedIn(){
-			return ($this->_isLoggedIn);
+			return $this->_isLoggedIn;
 		}
 	}
 ?>

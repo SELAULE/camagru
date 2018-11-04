@@ -42,6 +42,8 @@
             ev.preventDefault();
         }, false);
 
+        //sets everything back to default
+        
         clearBut.addEventListener('click', function(ev) {
             photos.innerHTML = '';
             filter = 'none';
@@ -55,7 +57,6 @@
         });
 
         function takepicture() {
-            //console.log('pic'); // remove!!! 
             const context = canvas.getContext('2d');
             if (width && height) {
                canvas.width = width;
@@ -67,7 +68,8 @@
                const img = document.createElement('img');
                img.setAttribute('src', data);
 
-               img.style.filter = filter;
+/*                img.style.filter = filter; */
+               context.drawImage(src, 0, 0, width, height);
 
                photos.appendChild(img);
             } else {

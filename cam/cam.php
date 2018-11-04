@@ -14,6 +14,9 @@
 			text-shadow: 4px 4px 4px #aaa;
 			text-align: center;
 		 }
+		 p{
+			 color: white;
+		 }
 	 </style>
 </head>
 <body>
@@ -27,7 +30,7 @@
 		</button>
 		<select id="photo-fil">
 			<option value="none">Normal</option>
-			<option value="grayscale(100%)">Grey</option>
+			<option src="../img/smile.png">Grey</option>
 			<option value="sepia(100%)">Sepia</option>
 			<option value="invert(100%)">Invert</option>
 			<option value="hue-rotate(90deg)">Hue</option>
@@ -37,7 +40,7 @@
 			<button id="clear-but">Clear</button>
 			<canvas id="canvas"></canvas>
 			<form action="upload.php" method="post" enctype="multipart/form-data">
-        Select image to upload:
+			<p>Select image to upload: </p>
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="Upload Image" name="submit">
     </form>

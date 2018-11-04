@@ -12,12 +12,14 @@
 
 			if ($validation->passed()) {
 				$user = new User();
+
+				$remember = (Input::get('remember') === 'on') ? true : false;
 				$login = $user->login(Input::get('username'), Input::get('password'));
 
 				if ($login) {
 					/* echo "Success"; */
-					/* Redirect::to('cam/cam.php'); */
-					Redirect::to('index.php');
+					Redirect::to('cam/cam.php');
+					/* Redirect::to('index.php'); */
 				} else {
 					echo "Login Failed";
 				}
