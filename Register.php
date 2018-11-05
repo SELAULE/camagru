@@ -61,97 +61,83 @@
 	<title>Register</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" media="screen" href="login.css" />
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 	<style>
-		.everything{
-			background-image: url("img/R-back-gro.jpg");
-			width: auto;
-			height: auto;
-			repeat: none;
+		h2{
+			font-family: 'Tangerine', serif;
+			font-size: 68px;
+			text-shadow: 4px 4px 4px #aaa;
+			text-align: center;
 		}
-		#form{
-			border: 2px black;
+		.form{
+			margin: auto;
+			margin-top: 40px;
+			width: 40%;
+			border: 0.5px solid black;
+			padding: 10px;
+			text-align: center;
 		}
-		#username{
+		input[type=text] {
+		width: 70%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		}
+		input[type=password] {
+		width: 70%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		}
+		#reg-butt{
+			background-color: #165882;
+			border: none;
+			color: white;
+			padding: 5px 7px;
+			margin-top: 5px;
+			text-align: center;
+			width: 15vw;
 			border-radius: 5px;
-			margin: 3px;
-			box-shadow: 5px 5px 5px #aaaaaa;
+			font-size: 20px;
 		}
- 		#password{
-			border-radius: 5px;
-			margin: 3px;
-			box-shadow: 5px 5px 5px #aaaaaa;
+		.header{
+			background: #4BB4B8;
 		}
-		#Confirm_Password{
-			border-radius: 5px;
-			margin: 3px;
-			box-shadow: 5px 5px 5px #aaaaaa;
+		#logout{
+			float: right;
 		}
-		#e-mail{
-			border-radius: 5px;
-			margin: 3px;
-			box-shadow: 5px 5px 5px #aaaaaa;
-	}
-	label{
-		font-family: 'Playfair Display', serif;
-	}
-	#reg-butt{
-      width: 100px;
-      height: 40px;
-      border-radius: 30px;
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: 700;
-      color: #344b70;
-      outline: none;
-      border: none;
-      background: rgba(0, 128, 0, 0.9);
-      cursor: pointer;
-      transition: all .3s;
-  
-      &:hover{
-        background: rgba(0, 128, 0, 1);
-      }
-	}
-	&--bg{
-      width: 100%;
-      height: 100%;
-  
-      img{
-        width: 100%;
-        height: 100%;
-      }
-    }
 	</style>
 </head>
+
 <body class="everything">
+	<header class="header">
+		<h2>Camagru</h2>
+	</header>
+		<div class="form">
+			<form action="" method="post">
+				<div class="username">
+					<label for="username">Username</label>
+					<input type="text" name="username" id="username" value="" autocomplete="off" placeholder="Username">
+				</div>
 
-		<form action="" method="post" id="form">
-		<!-- <div class="login--bg">
-			<img src="https://www.south-africa-info.co.za/info/businesses/7353/images/bottom_images/15.jpg" alt="">
-		</div> -->
-			<div class="username">
-				<label for="username">Username</label>
-				<input type="text" name="username" id="username" value="" autocomplete="off" placeholder="Username">
-			</div>
+				<div class="password">
+					<label for="password">Password</label> 
+					<input type="password" name="password" id="password" placeholder="password">
+				</div>
 
-			<div class="password">
-				<label for="password">Password</label> 
-				<input type="password" name="password" id="password" placeholder="password">
-			</div>
+				<div class="Confirm_Password">
+					<label for="Confirm_Password">Confirm Password</label>
+					<input type="password" name="Confirm_Password" id="Confirm_Password" value="" placeholder="confirm_password">
+				</div>
 
-			<div class="Confirm_Password">
-				<label for="Confirm_Password">Confirm Password</label>
-				<input type="password" name="Confirm_Password" id="Confirm_Password" value="" placeholder="confirm_password">
-			</div>
+				<div class="e-mail">
+					<label for="e-mail">E-mail address</label>
+					<input type="text" name="e-mail" id="e-mail" value="" placeholder="e-mail">
+				</div>
 
-			<div class="e-mail">
-				<label for="e-mail">Name</label>
-				<input type="text" name="e-mail" id="e-mail" value="" placeholder="e-mail">
-			</div>
-
-			<input type="hidden" name="token" id="name" value="<?php echo Token::generate(); ?>">
-			<input type="submit" value="Register" id="reg-butt">
-		</form>
+				<input type="hidden" name="token" id="name" value="<?php echo Token::generate(); ?>">
+				<input type="submit" value="Register" id="reg-butt">
+			</form>
+		</div>
 </body>
 </html>

@@ -1,3 +1,23 @@
+<?php
+	require_once 'core/init.php';
+
+	if (Session::exists('home')) {
+		echo '<p>' . Session::flash('home') . '</p>';
+	}
+	$user = new User();
+	if ($user->isLoggedIn()) {
+?>
+	<p>Welcome <a href="#"><?php echo escape($user->data()->username) ?></a></p>
+
+	<ul>
+		<li><a href="logout.php">Log out</a></li>
+	</ul>
+<?php
+	} else {
+		echo '<p> You need to <a href="login.php">log in</a> or <a href="Register.php">register</a> </p>';
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +39,9 @@
 		 }
 	 </style>
 </head>
-<body back>
+<body>
 	<div class="nav">
-		<h1 style="color:white" ><u>Camagru</u></h1>
+		<h1 style="color:white" >Camagru</h1>
 	</div>
 	<div class="top-con">
 		<video id="video">Can't Play</video>

@@ -1,0 +1,11 @@
+#canvas {
+	display: none;
+}
+
+h1{
+	font-family: sans-serif;
+}
+
+body {
+	background-image: url('../img/back-img.jpeg');
+}

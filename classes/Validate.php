@@ -28,7 +28,7 @@
 							$check = $this->_db->get($rule_value, array($item, '=', $value));
 							if ($check->count()) {
 								$this->addError("{$item} already exists.");
-							} 
+							}
 							break;
 							case 'max' :
 							if (strlen($value) > $rule_value) {

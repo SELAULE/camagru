@@ -91,7 +91,6 @@
 					}
 					
 				}
-				/* echo $sql; */
 				return false;
 			}
 
