@@ -1,5 +1,5 @@
 <?php
-	include 'database/setup.php';
+	include 'Config/setup.php';
 
 	try {
 		$conn = "mysql:host=$server_name;dbname=$db_name";

@@ -12,11 +12,11 @@
 				$user = new User();
 
 				$remember = (Input::get('remember') === 'on') ? true : false;
-				$login = $user->login(Input::get('username'), Input::get('password'));
+				$login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
 				if ($login) {
-					Redirect::to('cam/cam.php');
-					/* Redirect::to('index.php'); */
+					/*Redirect::to('cam/cam.php');*/
+					 Redirect::to('index.php'); 
 				} else {
 					echo "Invalid login";
 				}

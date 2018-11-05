@@ -11,6 +11,8 @@
 
 	<ul>
 		<li><a href="logout.php">Log out</a></li>
+		<li><a href="update.php">Update info</a></li>
+		<li><a href="changepassword.php">Update info</a></li>
 	</ul>
 <?php
 	} else {

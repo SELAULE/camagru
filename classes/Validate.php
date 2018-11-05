@@ -1,6 +1,7 @@
 <?php
+	require_once 'core/init.php';
 
-	class Validate {
+	class validate {
 		private $_passed = false,
 				$_errors = array(),
 				$_db = null;
@@ -24,6 +25,7 @@
 								$this->addError("{$item} must be a minimum of {$rule_value}");
 							}
 							break;
+
 							case 'unique' :
 							$check = $this->_db->get($rule_value, array($item, '=', $value));
 							if ($check->count()) {

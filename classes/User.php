@@ -4,9 +4,8 @@
 		private $_db,
 				$_data,
 				$_cookieName,
-				$_sessionName;
-
-		public $_isLoggedIn;
+				$_sessionName,
+				$_isLoggedIn;
 
 		public function __construct($user = null) {
 			$this->_db = DB::getInstance();
@@ -24,6 +23,18 @@
 				} else {
 					$this->find($user);
 				}
+			}
+		}
+
+		public function update($fields = array(), $id = null) {
+
+			if (!$id && $this->isLoggedIn()) {
+				$id = $this->data()->user_id;
+			}
+
+			if (!$this->_db->update('users', $id, $fields)) {
+				throw new Exception("Error updating infomation");
+				
 			}
 		}
 
@@ -46,7 +57,7 @@
 			return false;
 		}
 
-		public function login($username = null, $password = null/* , $remember */) {
+		public function login($username = null, $password = null, $remember) {
 			$user = $this->find($username);
 
 			if ($user){
@@ -54,17 +65,17 @@
 					Session::put($this->_sessionName, $this->data()->user_id);
 					if ($remember) {
 						$hash = Hash::unique();
-						$hashCheck = $this->_db->get('users_session', array('user_id', '=', ));
+						$hashCheck = $this->_db->get('users_session', array('user_id', '=', $this->data()->session_id));
 
 						if (!$hashCheck->count()) {
-							$this->_db->insert(array(
-								'$user_id' => $this->data()->id,
+							$this->_db->insert('users_session', array(
+								'$user_id' => $this->data()->session_id,
 								'hash' => $hash
 							));
 						} else {
 							$hash = $hashCheck->first()->hash;
 						}
-						Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
+						Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_exp'));
 					}
 					return true;
 				} 
