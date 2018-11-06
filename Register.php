@@ -63,6 +63,9 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="login.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 	<style>
+		body{
+			background-image: url("img/")
+		}
 		h2{
 			font-family: 'Tangerine', serif;
 			font-size: 68px;
@@ -109,7 +112,7 @@
 	</style>
 </head>
 
-<body class="everything">
+<body>
 	<header class="header">
 		<h2>Camagru</h2>
 	</header>
