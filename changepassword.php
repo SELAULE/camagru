@@ -14,6 +14,7 @@
 			$validation = $validate->check($_POST, array(
 				'current_password' => array(
 					'required' => true,
+					/* 'matches' => Input::get('password'), */
 					'min' => 6
 				),
 				'new_password' => array(
@@ -27,6 +28,10 @@
 				)
 			));
 			if ($validate->passed()) {
+				if(hash::make(Input::get('current_password')) !== $user->data()->password)
+				{
+					echo "Incorrect current password";
+				}
 			}else {
 				foreach ($validation->errors() as $error) {
 					echo $error, '<br>';

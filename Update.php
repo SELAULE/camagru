@@ -27,7 +27,7 @@
 
 						Session::flash('home', 'Succefully updated');
 						Redirect::to('index.php');
-				} catch (Exception $e) {	
+				} catch (Exception $e) {
 					die($e->getMessage());
 				}
 			} else {
@@ -44,7 +44,7 @@
 		<label for="username">username</label>
 		<input type="text" name="username" value="<?php echo escape($user->data()->username);?>">
 
-		<input type="submit" name="update">
+		<input type="submit" name="update" value="Update">
 		<input type="hidden" name="token" value="<?php echo Token::generate();?>">
 	</div>
 </form>

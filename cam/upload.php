@@ -1,6 +1,8 @@
 <?php
-
-$target_dir = "../core/";
+/* 
+require_once 'core/init.php';
+ */
+$target_dir = "../Gallery/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -20,10 +22,10 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 
-if ($_FILES["fileToUpload"]["size"] > 1000000) {
+/* if ($_FILES["fileToUpload"]["size"] > 1000000) {
     echo "File too large";
     $uploadOk = 0;
-}
+} */
 
 if ($imageFileType != "png" && $imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "gif") {
     echo "Unknown Filetype";
@@ -35,6 +37,7 @@ if ($uploadOk == 0){
 } else {
     if (move_uploaded_file ($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "Successfully Uploaded " . basename($_FILES["fileToUpload"]["name"]);
+        echo "<script type='text/javascript'>alert('$target_file');</script>";
     } else {
         echo " Error uploading image";
     }

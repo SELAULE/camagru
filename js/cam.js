@@ -64,12 +64,10 @@
                context.drawImage(video, 0, 0, width, height);
 
                const data = canvas.toDataURL('image/png');
-
+               
                const img = document.createElement('img');
                img.setAttribute('src', data);
-
                img.style.filter = filter;
-             /*   context.drawImage(src, 0, 0, width, height); */
                photos.appendChild(img);
             } else {
                 clearphoto();

@@ -98,6 +98,7 @@
 			color: white;
 			padding: 5px 7px;
 			margin-top: 5px;
+			margin-bottom: 5px;
 			text-align: center;
 			width: 15vw;
 			border-radius: 5px;
@@ -108,6 +109,17 @@
 		}
 		#logout{
 			float: right;
+		}
+		#button{
+			background-color: #165882;
+			border: none;
+			color: white;
+			padding: 5px 7px;
+			margin-top: 5px;
+			text-align: center;
+			width: 15vw;
+			border-radius: 5px;
+			font-size: 20px;
 		}
 	</style>
 </head>
@@ -140,6 +152,8 @@
 
 				<input type="hidden" name="token" id="name" value="<?php echo Token::generate(); ?>">
 				<input type="submit" value="Register" id="reg-butt">
+<!-- 				<hr />
+				<button href="login.php" id="button">Log in</button> -->
 			</form>
 		</div>
 </body>
