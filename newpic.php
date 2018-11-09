@@ -1,10 +1,18 @@
 <?php
 	require_once 'core/init.php';
-
-	$user = new user;
+	$db = DB::getInstance();
+	$user = new User();
+	
+	
 	if (!$user->isloggedin()) {
 		redirect::to('index.php');
+	}if (isset($_POST["submiting"])) {
+	$db->insert('comments', array('comment' => $_POST["com"],
+		'user_img_id' => $_POST["img_id"],
+		'img_id' => $user->data()->user_id
+	));
 	}
+	
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +24,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/pic.css" />
-	<script src="js/cam.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="js/pic.js"></script>
+	<style>
+		#canvas{
+			display: none;
+		}
+		.fa {
+			font-size: 30px;
+			cursor: pointer;
+			user-select: none;
+		}
+		.fa:hover {
+		color: darkblue;
+		}
+	</style>
 </head>
 <body>
 	<div class="navbar">
@@ -44,39 +66,50 @@
 			<img id="e4" src="img/Poop_Emoji_7b204f05-eec6-4496-91b1-351acc03d2c7_large.png" height='50px' width='50px' style="margin: 17px">
 			<img id="e5" src="img/Very_Mad_Emoji_large.png" height='50px' width='50px' style="margin: 17px">
 			<img id="e6" src="img/smile.png" height='50px' width='50px' style="margin: 17px">
-<!-- 			<img id="e7" src="images/emojis/emoj_7.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e8" src="images/emojis/emoj_8.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e9" src="images/emojis/emoj_9.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e10" src="images/emojis/emoj_10.png" height='50px' width='50px' style="margin: 17px"> -->
 			<br>
 		</div>
-			<button id="photo_button" class="button">Take Photo</button>
+		<!-- 	<button id="photo_button" class="button">Take Photo</button>
 			<canvas id="canvas2"></canvas>
-			<button id="save_photo" class="button">save</button>
-			<canvas id="canvas"></canvas>
+			<form action="cam/upload.php" method="post" enctype="multipart/form-data">
+			<p>Select image to upload: </p>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+			<button id="save_photo" class="button">Save</button>
+			<canvas id="canvas"></canvas> -->
 		</div>
 		
 
 		<div class="thumb_nail">
 			<?php
 				$db = DB::getInstance();
-				$db->get("gallery",array('user_id', '=', $user->data()->user_id));
+				$db->get("gallery", array('user_id', '=', $user->data()->user_id));
 				$images = $db->results();
 				$num_images = $db->count() - 1;
 
-				for ($i=0; $i < 3 && $num_images >= 0; $i++) { 
+				for ($i = 0; $i < 3 && $num_images >= 0; $i++) {
 					$img = $images[$num_images]->img_name;
-					echo "<img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'>";
+					$img_id = $images[$num_images]->img_id;
+/* 						foreach($images as $img) {
+							echo "<i onclick='likes(this)'' class='fa fa-thumbs-up'></i> <p type='text' id='show'></p>";
+						} */
+					echo "<div style = 'float :left;'> <form action='newpic.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/>".$img_id."<input type='submit' name='submiting' value='Button'u/><img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
+						<input type='text' name = 'com'placeholder='Comment'></input></form>
+					</div>";
 					$num_images--;
-				} 
+				}
 			?>
 		</div>
 	</div>
-       
 </body>
 
 <script>
-	
+	function likes(x) {
+	var	likes = 1;
+		x.classList.toggle("fa-thumbs-down");
+		document.getElementById('show').innerHTML=likes;
+		likes = likes + 1;
+		document.getElementById('show').submit();
+	}
 	function off() {
 		document.getElementById("emoji1").style.visibility = "hidden";
 		document.getElementById("emoji1").removeAttribute('src');
@@ -85,7 +118,6 @@
 	function off2() {
 		document.getElementById("emoji2").style.visibility = "hidden";
 		document.getElementById("emoji2").removeAttribute('src');
-
 	}
 
 	emo1 = document.getElementById("e1");
@@ -94,10 +126,6 @@
 	emo4 = document.getElementById("e4");
 	emo5 = document.getElementById("e5");
 	emo6 = document.getElementById("e6");
-/* 	emo7 = document.getElementById("e7");
-	emo8 = document.getElementById("e8");
-	emo9 = document.getElementById("e9");
-	emo10 = document.getElementById("e10"); */
 	
 	emo1.addEventListener("click", function(){switchsrc(emo1);}, false);
 	emo2.addEventListener("click", function(){switchsrc(emo2);}, false);
@@ -105,21 +133,15 @@
 	emo4.addEventListener("click", function(){switchsrc(emo4);}, false);
 	emo5.addEventListener("click", function(){switchsrc(emo5);}, false);
 	emo6.addEventListener("click", function(){switchsrc(emo6);}, false);
-/* 	emo7.addEventListener("click", function(){switchsrc(emo7);}, false);
-	emo8.addEventListener("click", function(){switchsrc(emo8);}, false);
-	emo9.addEventListener("click", function(){switchsrc(emo9);}, false);
-	emo10.addEventListener("click", function(){switchsrc(emo10);}, false); */
 
 	function switchsrc(emonew)
 	{
 		document.getElementById("emoji1").style.visibility = "visible";
-		if (document.getElementById("emoji1").hasAttribute("src"))
-		{
+		if (document.getElementById("emoji1").hasAttribute("src")) {
 			document.getElementById("emoji2").style.visibility = "visible";
 			var emoswitch = document.getElementById("emoji2");
 		}
-		else
-		{
+		else {
 			var emoswitch = document.getElementById("emoji1");
 		}
 		var ovl = document.getElementById("overlay");
@@ -155,26 +177,6 @@
 				emoswitch.style.top = "100px";
 				emoswitch.style.left = "400px";
 				break;
-/* 			case "e7" :
-				emoswitch.setAttribute('src', emonew.src);
-				emoswitch.style.top = "250px";
-				emoswitch.style.left = "10px";
-				break;
-			case "e8" :
-				emoswitch.setAttribute('src', emonew.src);
-				emoswitch.style.top = "250px";
-				emoswitch.style.left = "200px";
-				break;
-			case "e9" :
-				emoswitch.setAttribute('src', emonew.src);
-				emoswitch.style.top = "250px";
-				emoswitch.style.left = "400px";
-				break;
-			case "e10" :
-				emoswitch.setAttribute('src', emonew.src);
-				emoswitch.style.top = "100px";
-				emoswitch.style.left = "200px";
-				break; */
 		}
 	} 
 </script>

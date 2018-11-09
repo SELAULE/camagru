@@ -30,13 +30,17 @@
 					$x = 1;
 					if (count($params)) {
 						foreach($params as $param) {
+							$temp .=$param ;
 							$this->_query->bindValue($x, $param);
 							$x++;
 						}
+						header ('Location: newpic.php?'.$temp);
 					}
-					//print_r($this->_query);
+				
+					print_r($this->_query);
 					if ($this->_query->execute()) { //if they query is executed
 						$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+					//		header ('Location: newpic.php?'.$this->_query);
 						$this->_count = $this->_query->rowCount();
 					} else {
 						$this->_error = true;
@@ -75,17 +79,18 @@
 			public function insert($table, $fields = array()) {
 				if (count($fields)) {
 					$keys = array_keys($fields);
-					$value = '';
+					$value = NULL;
 					$x = 1;
 
 					foreach ($fields as $field) {
 						$value .= '?'; //Apends "?" to $value
 						if ($x < count($fields)){
-							$value .= ', '; //Apends "," after every "?"
+							$value .= ','; //Apends "," after every "?"
 						}
 						$x++;
 					}
 					$sql = "INSERT INTO {$table} (`" . implode('`, `', $keys) . "`) VALUES({$value})";
+					
 					if (!$this->query($sql, $fields)->error()){
 						return true;
 					}

@@ -18,8 +18,8 @@
     $data = explode( ',', $_POST["img64"] );
     $test = base64_decode($data[1]);
     
-    file_put_contents("images/gallary/user_".$user_id."_image_".$img_id.".png", $test);
-    $dest= imagecreatefrompng("images/gallary/user_".$user_id."_image_".$img_id.".png");
+    file_put_contents("Gallery/user_".$user_id."_image_".$img_id.".png", $test);
+    $dest= imagecreatefrompng("Gallery/user_".$user_id."_image_".$img_id.".png");
 
     if(!empty($_POST["emoji64"]))
     {
@@ -28,7 +28,7 @@
         $width = ImageSx($src);
         $height = ImageSy($src);
         pic_position($emo);
-        ImageCopyResampled($dest,$src,$pos2,$pos1,0,0,$x,$y,$width,$height);
+        ImageCopyResampled($dest, $src, $pos2, $pos1, 0, 0, $x, $y, $width, $height);
     }
     
     if(!empty($_POST["emoji64_2"]))
@@ -38,23 +38,16 @@
         $width = ImageSx($src);
         $height = ImageSy($src);
         pic_position($emo2);
-        ImageCopyResampled($dest,$src,$pos2,$pos1,0,0,$x,$y,$width,$height);
+        ImageCopyResampled($dest, $src, $pos2, $pos1, 0, 0, $x, $y, $width, $height);
     }
     
-    imagepng($dest, "images/gallary/user_".$user_id."_image_".$img_id.".png");
+    imagepng($dest, "Gallery/user_".$user_id."_image_".$img_id.".png");
 
     $db->insert('gallery', array(
-        'img_name' => 'images/gallary/'."user_".$user_id."_image_".$img_id.'.png',
+        'img_name' => 'Gallery/'."user_".$user_id."_image_".$img_id.'.png',
         'user_id' => $user_id
     ));
     redirect::to("newpic.php"); 
-
-    
-
-
-
-
-
 
     function pic_position($emo)
     {
@@ -91,26 +84,6 @@
                 $pos1 = 100;
                 $pos2 = 400;
                 $x = $width/4; $y = $height/4;
-                break;
-            case "images/emojis/emoj_7.png" :
-                $pos1 = 250;
-                $pos2 = 10;
-                $x = $width/4; $y = $height/4;
-                break;
-            case "images/emojis/emoj_8.png" :
-                $pos1 = 250;
-                $pos2 = 200;
-                $x = $width/5; $y = $height/5;
-                break;
-            case "images/emojis/emoj_9.png" :
-                $pos1 = 250;
-                $pos2 = 390;
-                $x = $width/6; $y = $height/6;
-                break;
-            case "images/emojis/emoj_10.png" :
-                $pos1 = 100;
-                $pos2 = 200;
-                $x = $width/5; $y = $height/5;
                 break;
         }
     }
