@@ -1,18 +1,8 @@
 <?php
-	require_once 'core/init.php';
+ 	require_once 'core/init.php';
 	$db = DB::getInstance();
 	$user = new User();
-	
-	
-	if (!$user->isloggedin()) {
-		redirect::to('index.php');
-	}if (isset($_POST["submiting"])) {
-	$db->insert('comments', array('comment' => $_POST["com"],
-		'user_img_id' => $_POST["img_id"],
-		'img_id' => $user->data()->user_id
-	));
-	}
-	
+
 ?>
 
 <!DOCTYPE html>
@@ -22,23 +12,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>New Pic</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+	<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" /> -->
 	<link rel="stylesheet" type="text/css" media="screen" href="css/pic.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="js/pic.js"></script>
-	<style>
-		#canvas{
-			display: none;
-		}
-		.fa {
-			font-size: 30px;
-			cursor: pointer;
-			user-select: none;
-		}
-		.fa:hover {
-		color: darkblue;
-		}
-	</style>
 </head>
 <body>
 	<div class="navbar">
@@ -49,7 +26,7 @@
 				<li class="right"><a href="logout.php">Log out</a></li>
 			</ul>
 	</div>
-	<img class="logo" src="images/site_images/logo.png" alt="logo">	
+	<img class="logo" src="images/site_images/logo.png" alt="logo">
 	<div class="main_container">
 		<div class="top_container">
 			<div id="overlay" class="overlay">
@@ -68,14 +45,14 @@
 			<img id="e6" src="img/smile.png" height='50px' width='50px' style="margin: 17px">
 			<br>
 		</div>
-		<!-- 	<button id="photo_button" class="button">Take Photo</button>
+			<button id="photo_button" class="button">Take Photo</button>
 			<canvas id="canvas2"></canvas>
 			<form action="cam/upload.php" method="post" enctype="multipart/form-data">
 			<p>Select image to upload: </p>
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="Upload Image" name="submit">
 			<button id="save_photo" class="button">Save</button>
-			<canvas id="canvas"></canvas> -->
+			<canvas id="canvas"></canvas>
 		</div>
 		
 
@@ -89,11 +66,8 @@
 				for ($i = 0; $i < 3 && $num_images >= 0; $i++) {
 					$img = $images[$num_images]->img_name;
 					$img_id = $images[$num_images]->img_id;
-/* 						foreach($images as $img) {
-							echo "<i onclick='likes(this)'' class='fa fa-thumbs-up'></i> <p type='text' id='show'></p>";
-						} */
-					echo "<div style = 'float :left;'> <form action='newpic.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/>".$img_id."<input type='submit' name='submiting' value='Button'u/><img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
-						<input type='text' name = 'com'placeholder='Comment'></input></form>
+					echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/><img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
+						<input type='text' name = 'com'placeholder='Comment'></input><input type='submit' name='submiting' value='Post'u/></form>
 					</div>";
 					$num_images--;
 				}

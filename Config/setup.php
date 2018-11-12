@@ -1,6 +1,6 @@
 <?php
     include "database.php";
-  /*   require_once '../core/init.php'; */
+    require_once '../core/init.php';
 
     try {
         $dbh = new PDO("mysql:host=$DB_DNS", $DB_USER, $DB_PASSWORD);

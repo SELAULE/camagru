@@ -16,7 +16,7 @@
 
 				if ($login) {
 					/*Redirect::to('cam/cam.php');*/
-					 Redirect::to('newpic.php'); 
+					 Redirect::to('index.php'); 
 				} else {
 					echo "Invalid login";
 				}
@@ -38,7 +38,7 @@
 	<title>Page Title</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
-	<link rel="stylesheet" type="text/css" media="screen" href="login.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="css/login.css" />
 	<style>
 		h2{
 			font-family: 'Tangerine', serif;

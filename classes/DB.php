@@ -30,17 +30,14 @@
 					$x = 1;
 					if (count($params)) {
 						foreach($params as $param) {
-							$temp .=$param ;
 							$this->_query->bindValue($x, $param);
 							$x++;
 						}
-						header ('Location: newpic.php?'.$temp);
 					}
 				
-					print_r($this->_query);
+					//print_r($this->_query);
 					if ($this->_query->execute()) { //if they query is executed
 						$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
-					//		header ('Location: newpic.php?'.$this->_query);
 						$this->_count = $this->_query->rowCount();
 					} else {
 						$this->_error = true;
@@ -59,7 +56,7 @@
 
 					if (in_array($operator, $operators)) {
 						$sql = " {$action} FROM {$table} WHERE {$field} {$operator} ?";
-
+ 
 						if (!$this->query($sql, array($value))->error()){
 							return $this;
 						}
@@ -79,7 +76,7 @@
 			public function insert($table, $fields = array()) {
 				if (count($fields)) {
 					$keys = array_keys($fields);
-					$value = NULL;
+					$value = '';
 					$x = 1;
 
 					foreach ($fields as $field) {
@@ -89,10 +86,12 @@
 						}
 						$x++;
 					}
+					$value = $fields;
 					$sql = "INSERT INTO {$table} (`" . implode('`, `', $keys) . "`) VALUES({$value})";
-					
+					print_r($value);
 					if (!$this->query($sql, $fields)->error()){
 						return true;
+						
 					}
 				}
 				return false;
@@ -111,12 +110,10 @@
 				}
 				$sql = "UPDATE {$table} SET {$set} WHERE user_id = {$id}";
 
-				
-
 				if (!$this->query($sql, $fields)->error()){
 					return true;
 				}
-				//echo $sql;
+				echo $sql;
 				return false;
 			}
 
@@ -137,3 +134,7 @@
 			}
 	}
 ?>
+
+
+
+33
