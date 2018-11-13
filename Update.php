@@ -24,9 +24,8 @@
 					$user->update(array(
 						'username' => Input::get('username')
 					));
-
-						Session::flash('home', 'Succefully updated');
-						Redirect::to('index.php');
+					Session::flash('home', 'Succefully updated');
+					Redirect::to('index.php');
 				} catch (Exception $e) {
 					die($e->getMessage());
 				}

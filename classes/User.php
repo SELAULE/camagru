@@ -20,9 +20,9 @@
 					} else {
 						//Logout
 					}
-				} else {
+				} 
+			}else {
 					$this->find($user);
-				}
 			}
 		}
 
@@ -48,10 +48,10 @@
 			if ($user) {
 				$field = (is_numeric($user)) ? 'user_id' : 'username';
 				$data = $this->_db->get('users', array($field, '=', $user));
-
 				if ($data->count()) {
 					$this->_data = $data->first();
 					return true;
+					
 				}
 			}
 			return false;
@@ -81,6 +81,10 @@
 				} 
 			}
 			return false;
+		}
+
+		public function exists() {
+			return (!empty($this->_data)) ? true : false;
 		}
 
 		public function logout() {

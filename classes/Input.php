@@ -1,6 +1,7 @@
 <?php
 	
 	require_once 'core/init.php';
+
 	class Input {
 		public static function exists($type = 'post') {
 			switch ($type) {
@@ -17,9 +18,9 @@
 		}
 
 		public static function get($item) {
-			if (isset($item)) {
+			if (isset($_POST[$item])) {
 				return $_POST[$item];
-			} elseif (isset($item)) {
+			} elseif (isset($_GET[$item])) {
 				return $_GET[$item];
 			}
 			return '';
