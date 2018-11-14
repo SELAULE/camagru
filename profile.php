@@ -42,3 +42,13 @@ if (!$username = Input::get('user')) {
     }
  }
 ?>
+
+<script>
+    function likes(x) {
+	var	likes = 1;
+		x.classList.toggle("fa-thumbs-down");
+		document.getElementById('show').innerHTML=likes;
+		likes = likes + 1;
+		document.getElementById('show').submit();
+	}
+</script>

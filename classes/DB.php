@@ -81,7 +81,7 @@
 				foreach ($fields as $field) {
 					$value .= '?'; //Apends "?" to $value
 					if ($x < count($fields)){
-						$value .= ','; //Apends "," after every "?"
+						$value .= ', '; //Apends "," after every "?"
 					}
 					$x++;
 				}
