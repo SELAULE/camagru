@@ -40,7 +40,7 @@
 					));
 					
 					Session::flash('Home', 'You have successfully registered');
-					Redirect::to('cam/cam.php');
+					Redirect::to('login.php');
 				} catch(Exception $e) {
 					die($e->getMessage);
 				}

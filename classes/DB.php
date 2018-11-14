@@ -85,7 +85,7 @@
 					}
 					$x++;
 				}
-				$value = $fields;
+				// $value = $fields;
 				$sql = "INSERT INTO {$table} (`" . implode('`, `', $keys) . "`) VALUES({$value})";
 				if (!$this->query($sql, $fields)->error()){
 					return true;
