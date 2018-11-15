@@ -1,4 +1,7 @@
 <style>
+    body{
+        background-color: #ddd;
+    }
     .fa {
 	font-size: 30px;
 	cursor: pointer;
@@ -7,10 +10,18 @@
     .fa:hover {
     color: darkblue;
     }
+    .com-box{
+        width: 490px;
+        padding: 15px;
+        margin-bottom: 4px;
+        background-color: #fff;
+        border-radius: 4px;
+    }
 </style>
 
 <?php
 require_once 'core/init.php';
+$db = DB::getinstance();
 
 if (!$username = Input::get('user')) {
     Redirect::to('index.php');
@@ -23,7 +34,27 @@ if (!$username = Input::get('user')) {
     } else {
         $data = $user->data();
     } 
-     ?>
+  }
+function getComments($db) {
+    // $img_id = $_POST['img_id'];
+    try {
+        $results = "SELECT * FROM comments WHERE img_id = 15";
+        $db->get("comments", array('img_id', '=', 2));
+        // $db->query_2($results, array("img_id" => 15));
+        $row = $db->results();
+        $i=0;
+        foreach ($row as $key => $val)
+        {
+            echo "<div class='com-box'>";
+            echo $row[$i++]->comment . "<br>";
+            echo "</div>";
+        }
+        }
+         catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+}
+?>
 
     <h3><?php echo escape($data->username); ?></h3>
     <?php
@@ -35,12 +66,13 @@ if (!$username = Input::get('user')) {
     for ($i = 0;$num_images >= 0; $i++) {
         $img = $images[$num_images]->img_name;
         $img_id = $images[$num_images]->img_id;
-        echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/><img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
+        echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/>".$img_id."<img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
             <input type='text' name = 'com'placeholder='Comment'></input><input type='submit' name='submiting' value='Post'u/></form>
-        </div>";
+            </div>";
         $num_images--;
+        getComments($db);
     }
- }
+        // getComments($db);
 ?>
 
 <script>

@@ -8,7 +8,7 @@
     $comment = $_POST['com'];
 	if (!$user->isLoggedin()) {
 		Redirect::to('index.php');
-	}if (isset($_POST["submiting"])) {
+	} if (isset($_POST["submiting"])) {
      try {
     $sql = "INSERT INTO `comments`(`user_img_id`, `comment`, `img_id`) VALUES(?, ?, ?)";
     $db->query($sql, array($user_id, $comment, $img_id));
