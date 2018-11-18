@@ -57,9 +57,9 @@ if (!$username = Input::get('user')) {
 function getComments($db) {
     // $com_id = intval($_POST['comment_id']);
     try {
-        $com_id = intval($_POST['comment_id']);
+        // $com_id = intval($_POST['comment_id']);
         $results = "SELECT * FROM comments WHERE img_id = 15";
-        $db->get("comments", array('img_id', '=', 2));
+         $db->get("comments", array('img_id', '=', 2));
         // $db->query_2($results, array("img_id" => 15));
         $row = $db->results();
         $i=0;
@@ -92,11 +92,11 @@ function getComments($db) {
         echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/>".$img_id."<img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
             <input type='text' name = 'com'placeholder='Comment'></input><input type='submit' name='submiting' value='Post'u/></form>
             </div>";
-        //echo getComments($db);
+        echo getComments($db);
         $num_images--;
-        //getComments($db);
+        getComments($db);
     }
-        // getComments($db);
+        getComments($db);
 ?>
 
 <script>

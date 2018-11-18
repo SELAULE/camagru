@@ -1,6 +1,6 @@
 <?php
 	
-	require_once 'core/init.php';
+	// require_once 'core/init.php';
 
 	class Input {
 		public static function exists($type = 'post') {

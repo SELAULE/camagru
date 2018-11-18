@@ -110,6 +110,8 @@
 
 	function switchsrc(emonew)
 	{
+		// var canvas = document.getElementById('canvas'),
+		// cont = canvascanvas1.getContext('2d');
 		document.getElementById("emoji1").style.visibility = "visible";
 		if (document.getElementById("emoji1").hasAttribute("src")) {
 			document.getElementById("emoji2").style.visibility = "visible";
@@ -125,31 +127,37 @@
 				emoswitch.setAttribute('src', emonew.src);
 				emoswitch.style.top = "10px";
 				emoswitch.style.left = "10px";
+				//cont.drawImage(emoswitch,0,0,100,100);
 				break;
 			case "e2" :
 				emoswitch.setAttribute('src', emonew.src);
 				emoswitch.style.top = "10px";
 				emoswitch.style.left = "200px";
+				//cont.drawImage(emoswitch,0,0,100,100);
 				break;
 			case "e3" :
 				emoswitch.setAttribute('src', emonew.src);
 				emoswitch.style.top = "10px";
 				emoswitch.style.left = "400px";
+				// cont.drawImage(emoswitch,0,0,100,100);
 				break;
 			case "e4" :
 				emoswitch.setAttribute('src', emonew.src);
 				emoswitch.style.top = "100px";
 				emoswitch.style.left = "10px";
+				// cont.drawImage(emoswitch,0,0,100,100);
 				break;
 			case "e5" :
 				emoswitch.setAttribute('src', emonew.src);
 				emoswitch.style.top = "100px";
 				emoswitch.style.left = "200px";
+				// cont.drawImage(emoswitch,0,0,100,100);
 				break;
 			case "e6" :
 				emoswitch.setAttribute('src', emonew.src);
 				emoswitch.style.top = "100px";
 				emoswitch.style.left = "400px";
+				// cont.drawImage(emoswitch,0,0,100,100);
 				break;
 		}
 	} 

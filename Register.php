@@ -19,7 +19,7 @@
 					'required' => true,
 					'matches' => 'password'
 				),
-				'e-mail' => array(
+				'e_mail' => array(
 					'required' => true,
 					'min' => 2,
 					'max' => 50
@@ -34,7 +34,7 @@
 						'username' => Input::get('username'),
 						'password' => Hash::make(Input::get('password')),
 						'salt' => 'salt',
-						'e-mail' => Input::get('e-mail'),
+						'e_mail' => Input::get('e_mail'),
 						'joined' => date('Y-m-d H:i:s'),
 						'group' => 0
 					));
@@ -64,7 +64,8 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 	<style>
 		body{
-			background-image: url("img/")
+			background-image: url("img/");
+			background-color: #ddd;
 		}
 		h2{
 			font-family: 'Tangerine', serif;
@@ -147,7 +148,7 @@
 
 				<div class="e-mail">
 					<label for="e-mail">E-mail address</label>
-					<input type="text" name="e-mail" id="e-mail" value="" placeholder="e-mail">
+					<input type="text" name="e_mail" id="e-mail" value="" placeholder="e-mail">
 				</div>
 
 				<input type="hidden" name="token" id="name" value="<?php echo Token::generate(); ?>">

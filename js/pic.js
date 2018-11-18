@@ -8,7 +8,6 @@ window.onload = function()
 	const video = document.getElementById('video');
 	const canvas1 = document.getElementById('canvas');
 	const canvas2 = document.getElementById('canvas2');
-	// const photos = document.getElementById('photos');
 	const photo_button = document.getElementById('photo_button');
 	const save_photo = document.getElementById('save_photo');
 
@@ -30,9 +29,6 @@ window.onload = function()
 			video.setAttribute('height',height);
 			canvas.setAttribute('width',width);
 			canvas.setAttribute('height',height);
-			canvas2.setAttribute('width',width);
-			canvas2.setAttribute('height',height);
-
 			streaming = true;
 		}
 	}, false);
@@ -40,7 +36,7 @@ window.onload = function()
 	photo_button.addEventListener('click',function(e)
 	{
 		document.getElementById("save_photo").style.visibility = "visible";
-		document.getElementById("canvas2").style.display = "block";
+		document.getElementById("canvas").style.display = "block";
 		takepicture();
 		preview();
 		e.preventDefault()
@@ -51,9 +47,9 @@ window.onload = function()
 		savepic();
 		e.preventDefault();
 	}, false);
-	canvas2.addEventListener('click',function(e)
+	canvas.addEventListener('click',function(e)
 	{
-		document.getElementById("canvas2").style.display = "none";
+		document.getElementById("canvas").style.display = "none";
 		document.getElementById("save_photo").style.visibility = "hidden";
 		e.preventDefault();
 	}, false);
@@ -72,22 +68,22 @@ window.onload = function()
 	}
 	function preview()
 	{
-		const context2 = canvas2.getContext('2d');
+		const context = canvas.getContext('2d');
 		if (width && height) {
-			canvas2.width = width;
-			canvas2.height = height;
-			context2.drawImage(video, 0, 0, width, height);
+			canvas.width = width;
+			canvas.height = height;
+			context.drawImage(video, 0, 0, width, height);
 			if (document.getElementById("emoji1").hasAttribute("src")) {
 				var emoji1 = document.getElementById("emoji1");
 				var left = parseInt(emoji1.style.left);
 				var top = parseInt(emoji1.style.top);
-				context2.drawImage(emoji1,left,top,100,100);
+				context.drawImage(emoji1,left,top,100,100);
 			}
 			if (document.getElementById("emoji2").hasAttribute("src")) {
 				var emoji2 = document.getElementById("emoji2");
 				var left2 = parseInt(emoji2.style.left);
 				var top2 = parseInt(emoji2.style.top);
-				context2.drawImage(emoji2,left2,top2,100,100);
+				context.drawImage(emoji2,left2,top2,100,100);
 			}
 		}
 	}

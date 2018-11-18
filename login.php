@@ -1,6 +1,8 @@
 <?php
 	require_once 'core/init.php';
+	$user = new User();
 
+	// if ($user->data()->group == 1) {
 	if (Input::exists()) {
 		if (Token::check(Input::get('token'))) {
 			$validate = new Validate();
@@ -28,6 +30,11 @@
 			return false;
 		}
 	}
+// } else {
+// 	echo '<script language="javascript">';
+// 	echo 'alert("Check email for activation code")';
+// 	echo '</script>';
+// }
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +47,9 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/login.css" />
 	<style>
+		body{
+			background-color: #ddd;
+		}
 		h2{
 			font-family: 'Tangerine', serif;
 			font-size: 68px;
