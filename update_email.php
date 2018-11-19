@@ -20,7 +20,7 @@
 
 			$validate = new Validate();
 			$validation = $validate->check($_POST, array(
-				'username' => array (
+				'e_mail' => array (
 				'required' => true,
 				'min' => 2,
 				'max' => 20
@@ -30,7 +30,7 @@
 			if ($validate->passed()) {
 				try {
 					$user->update(array(
-						'username' => Input::get('username')
+						'e_mail' => Input::get('e_mail')
 					));
 					Session::flash('home', 'Succefully updated');
 					Redirect::to('index.php');
@@ -48,8 +48,8 @@
 
 <form action="" method="post">
 	<div class="field">
-		<label for="username">username</label>
-		<input type="text" name="username" value="<?php echo escape($user->data()->username);?>">
+		<label for="e_mail">e_mail</label>
+		<input type="text" name="e_mail" value="<?php echo escape($user->data()->e_mail);?>">
 
 		<input type="submit" name="update" value="Update">
 		<input type="hidden" name="token" value="<?php echo Token::generate();?>">

@@ -21,6 +21,7 @@
 				),
 				'e_mail' => array(
 					'required' => true,
+					'valid_email' => 1,
 					'min' => 2,
 					'max' => 50
 				),
@@ -38,7 +39,30 @@
 						'joined' => date('Y-m-d H:i:s'),
 						'group' => 0
 					));
-					
+					$email =  Input::get('e_mail');
+
+						$msg = 'Your account has been made, <br /> please verify it by clicking the activation link that has been send to your email.';
+						$hash = Hash::make(Input::get('password'));
+						$username = Input::get('username');
+					if (isset($msg)) {
+						echo '<div class="statusmsg">' .$msg. '</div>';
+					}
+				
+					$to = $email;
+					$subject = 'Signup / Verify';
+					$message = 'Thanks for signing up!
+					Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+					 
+					------------------------
+					Username: '.Input::get('username').'
+					Password: '.Input::get('password').'
+					------------------------
+					 
+					Please click this link to activate your account:
+					http://127.0.0.1:8080/camagru/verify.php/verify.php?email='.$email.'&hash='.$hash.'&username='.$username.'';
+				
+					$headers = 'From:noreply@camagru.com' . "\r\n";
+					mail($to, $subject, $message, $headers);
 					Session::flash('Home', 'You have successfully registered');
 					Redirect::to('login.php');
 				} catch(Exception $e) {

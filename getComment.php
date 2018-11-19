@@ -10,7 +10,7 @@ function getComments() {
     $row = $results->fetch_assoc();
     echo $row['com'];
     } catch(PDOException $e) {
-        echo $sql . "<br>" .
+        echo $sql . "<br>";
     }
 }
 ?>

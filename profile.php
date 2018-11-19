@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
     body{
         background-color: #ddd;
@@ -11,7 +13,7 @@
     color: darkblue;
     }
     .com-box{
-        width: 490px;
+        width: 505px;
         padding: 20px;
         margin-bottom: 4px;
         background-color: #fff;
@@ -54,22 +56,22 @@ if (!$username = Input::get('user')) {
     }
 }
 
-function getComments($db) {
+function getComments($db, $img_id) {
     // $com_id = intval($_POST['comment_id']);
     try {
         // $com_id = intval($_POST['comment_id']);
-        $results = "SELECT * FROM comments WHERE img_id = 15";
-         $db->get("comments", array('img_id', '=', 2));
-        // $db->query_2($results, array("img_id" => 15));
+        $results = "SELECT comment FROM comments WHERE img_id = $img_id";
+
+        //  $db->get("comments", array('img_id', '=', 2));
+        $db->query($results);
         $row = $db->results();
         $i=0;
         foreach ($row as $key => $val) {
-            // echo "<div class='com-box'>";
-            echo $row[$i++]->comment . "<br>";
-            /* echo "<form class='delete-com' method='POST' action='".delete_com($db)."'>
+            echo "<div class='com-box'>";
+            echo $row[$i++]->comment. "<br>";
+            echo "<form class='delete-com' method='POST' action='".delete_com($db)."'>
             <input type='hidden' name='img_id' value=''>
-            <button>Delete</button>
-            </form>"; */
+            </form>";
             echo "</div>";
         }
         }
@@ -77,9 +79,24 @@ function getComments($db) {
         echo $sql . "<br>" . $e->getMessage();
     }
 }
-?>
 
-    <h3><?php echo escape($data->username); ?></h3>
+?>
+<body>
+<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+	<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+    <a href="newpic.php" class="w3-bar-item w3-button">New pic</a>
+  <a href="update.php" class="w3-bar-item w3-button">Update info</a>
+  <a href="changepassword.php" class="w3-bar-item w3-button">Update password</a>
+  <a href="logout.php" class="w3-bar-item w3-button">Log out</a>
+</div>
+
+<div class="w3-teal">
+<h3>Welcome <a href="profile.php?user=<?php echo escape($user->data()->username);?>"><?php echo escape($user->data()->username) ?></a></h3>
+  <button class="w3-button w3-teal w3-xlarge" onclick="popout()">☰</button>
+  <div class="w3-container">
+  </div>
+</div>
+    </body>
     <?php
     $db = DB::getInstance();
     $db->get("gallery", array('user_id', '=', $user->data()->user_id));
@@ -89,15 +106,16 @@ function getComments($db) {
     for ($i = 0;$num_images >= 0; $i++) {
         $img = $images[$num_images]->img_name;
         $img_id = $images[$num_images]->img_id;
-        echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/>".$img_id."<img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
-            <input type='text' name = 'com'placeholder='Comment'></input><input type='submit' name='submiting' value='Post'u/></form>
-            </div>";
-        echo getComments($db);
+        echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/><img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
+            <input type='text' name = 'com'placeholder='Comment'></input><input type='submit' name='submiting' value='Post'u/>";
+        echo "</form> <div id = 'comms'>";
+
+        getComments($db, $img_id);
+        echo "</div></div>";
         $num_images--;
-        getComments($db);
     }
-        getComments($db);
 ?>
+<script src="js/sidebar.js"></script>
 
 <script>
     function likes(x) {

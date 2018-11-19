@@ -28,9 +28,15 @@
 				)
 			));
 			if ($validate->passed()) {
-				if(hash::make(Input::get('current_password')) !== $user->data()->password)
-				{
+				if(hash::make(Input::get('current_password')) !== $user->data()->password) {
 					echo "Incorrect current password";
+				} else {
+					$user->update(array(
+						'password' => Hash::make(Input::get('new_password'))
+					));
+
+					Session::flash('home', 'Your password has been changed');
+					Redirect::to('login.php');
 				}
 			}else {
 				foreach ($validation->errors() as $error) {

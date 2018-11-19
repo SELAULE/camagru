@@ -1,3 +1,4 @@
+
 <?php
  	require_once 'core/init.php';
 	$db = DB::getInstance();
@@ -15,17 +16,41 @@
 	<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" /> -->
 	<link rel="stylesheet" type="text/css" media="screen" href="css/pic.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    body{
+        background-color: #ddd;
+		z-index: 5;
+    }
+</style>
 	<script src="js/pic.js"></script>
+	<script src="js/sidebar.js"></script>
 </head>
 <body>
-	<div class="navbar">
+	<!-- <div class="navbar">
 			<ul>
 				<li class="left"><a href="index.php">Home</a></li>
-				<li class="left"><a href="profile.php?user=<?php echo escape($user->data()->username);?>"><?php echo escape($user->data()->username);?></a></li>                    
+				<li class="left"><a href="profile.php?user=</a></li>                    
 				<li class="left"><a href="newpic.php">NewPic</a></li>
 				<li class="right"><a href="logout.php">Log out</a></li>
 			</ul>
-	</div>
+	</div> -->
+	<!----------------------------------------------------------------------------->
+	<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+	<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+  <a href="update.php" class="w3-bar-item w3-button">Update info</a>
+  <a href="update_email.php" class="w3-bar-item w3-button">Update email</a>
+  <a href="changepassword.php" class="w3-bar-item w3-button">Update password</a>
+  <a href="logout.php" class="w3-bar-item w3-button">Log out</a>
+</div>
+
+<div class="w3-teal">
+<h3>Welcome <a href="profile.php?user=<?php echo escape($user->data()->username);?>"><?php echo escape($user->data()->username) ?></a></h3>
+  <button class="w3-button w3-teal w3-xlarge" onclick="popout()">☰</button>
+  <div class="w3-container">
+  </div>
+</div>
+<!----------------------------------------------------------------------------->
 	<img class="logo" src="images/site_images/logo.png" alt="logo">
 	<div class="main_container">
 		<div class="top_container">
