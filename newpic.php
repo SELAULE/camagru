@@ -4,6 +4,26 @@
 	$db = DB::getInstance();
 	$user = new User();
 
+	function getComments($db, $img_id) {
+		try {
+			$results = "SELECT comment FROM comments WHERE img_id = $img_id";
+	
+			$db->query($results);
+			$row = $db->results();
+			$i=0;
+			foreach ($row as $key => $val) {
+				echo "<div class='com-box'>";
+				echo $row[$i++]->comment. "<br>";
+				// echo "<form class='delete-com' method='POST' action='".delete_com($db)."'>
+				// <input type='hidden' name='img_id' value=''>
+				// </form>";
+				echo "</div>";
+			}
+			}
+			 catch(PDOException $e) {
+			echo $sql . "<br>" . $e->getMessage();
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -18,24 +38,30 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
-    body{
-        background-color: #ddd;
-		z-index: 5;
+	.com-box{
+        width: 505px;
+        padding: 20px;
+        margin-bottom: 4px;
+        background-color: #fff;
+        border-radius: 4px;
+    }
+    .delete-com{
+        position: absolute;
+        /* top: 0px; */
+        /* right: 0px; */
+        float: right;
+    }
+    .delete-com button{
+        width: auto;
+        height: 20px;
+        background-color: #fff;
+        opacity: 0.7;
     }
 </style>
 	<script src="js/pic.js"></script>
 	<script src="js/sidebar.js"></script>
 </head>
 <body>
-	<!-- <div class="navbar">
-			<ul>
-				<li class="left"><a href="index.php">Home</a></li>
-				<li class="left"><a href="profile.php?user=</a></li>                    
-				<li class="left"><a href="newpic.php">NewPic</a></li>
-				<li class="right"><a href="logout.php">Log out</a></li>
-			</ul>
-	</div> -->
-	<!----------------------------------------------------------------------------->
 	<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
 	<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
   <a href="update.php" class="w3-bar-item w3-button">Update info</a>
@@ -50,13 +76,12 @@
   <div class="w3-container">
   </div>
 </div>
-<!----------------------------------------------------------------------------->
-	<img class="logo" src="images/site_images/logo.png" alt="logo">
+	<!-- <img class="logo" src="images/site_images/logo.png" alt="logo"> -->
 	<div class="main_container">
 		<div class="top_container">
 			<div id="overlay" class="overlay">
 				<img class="text" height='100px' width='100px' id="emoji1" name="emoji1" onclick="off()">
-				<img onclick="off2()" class="text" height='100px' width='100px' id="emoji2" name="emoji2"  >
+				<img onclick="off2()" class="text" height='100px' width='100px' id="emoji2" name="emoji2" >
 			</div>
 			<div class="video">
 				<video id='video'>Stream not available...</video>
@@ -92,8 +117,9 @@
 					$img = $images[$num_images]->img_name;
 					$img_id = $images[$num_images]->img_id;
 					echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/><img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
-						<input type='text' name = 'com'placeholder='Comment'></input><input type='submit' name='submiting' value='Post'u/></form>
-					</div>";
+						<input type='text' name = 'com' placeholder='Comment'></input><input type='submit' name='submiting' value='Post'/>";
+						echo "</form> <div id = 'comms'>";
+						getComments($db, $img_id);
 					$num_images--;
 				}
 			?>

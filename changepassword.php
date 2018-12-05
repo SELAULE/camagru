@@ -1,3 +1,42 @@
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ -->
+ <style>
+ body{
+    background-color: #ddd;
+}
+	.form{
+			margin: auto;
+			margin-top: 40px;
+			width: 40%;
+			border: 0.5px solid black;
+			padding: 10px;
+			text-align: center;
+		}
+		input[type=text] {
+		width: 70%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		}
+		input[type=password], #remember {
+		width: 70%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		}
+		#button{
+			background-color: #165882;
+			border: none;
+			color: white;
+			padding: 5px 7px;
+			margin-top: 5px;
+			text-align: center;
+			width: 15vw;
+			border-radius: 5px;
+			font-size: 20px;
+		}
+ </style>
+
 <?php
 	require_once 'core/init.php';
 
@@ -46,7 +85,7 @@
 	}
 }
 ?>
-
+<div class="form">
 <form action="" method="post">
 	<div class="current_password">
 		<label for="current_password">current_password</label>
@@ -63,6 +102,7 @@
 			<input type="password" name="Confirm_new_Password" id="Confirm_new_Password" value="" placeholder="Confirm_new_Password">
 	</div>
 
-	<input type="submit" name="Change">
+	<input type="submit" name="Change" id="button">
 		<input type="hidden" name="token" value="<?php echo Token::generate();?>">
 </form>
+</div>

@@ -41,3 +41,17 @@ cursor: pointer;
 .fa:hover {
 color: darkblue;
 }
+body{
+	background-image: url("../Gallery/back-img.jpeg");
+	z-index: 5;
+}
+.main_container {
+	margin: auto;
+	width: 60%;
+	padding: 10px;
+}
+.top_container{
+	margin: auto;
+	width: 60%;
+	padding: 10px;
+}

@@ -53,6 +53,13 @@
             `img_id` INT NOT NULL,
             PRIMARY KEY(`comment_id`)
         )");
+        $dbh->exec("CREATE TABLE IF NOT EXISTS `camagru`.`likes`(
+            `img_id` INT NOT NULL,
+            `likers_id` INT NOT NULL,
+            `like_status` INT NOT NULL
+        )");
+        $dbh->exec("ALTER TABLE
+        `camagru`.`likes` ADD UNIQUE(`img_id`, `likers_id`)");
         header("location: ../Register.php");
     } catch (PDOException $e) {
         die("DB ERROR: ". $e->getMessage());

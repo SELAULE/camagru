@@ -24,12 +24,12 @@
         }
     }
 
-    function delete_com($db) {
-        if (isset($_POST['commet'])) {
-            $com_id = $_POST['comment_id'];
-             $sql = "DELETE FROM `comments` WHERE `comments`.`comment_id` = $com_id";
-            //  $db->query($sql, array($com_id));
-        }
-    }
-    Redirect::to('profile.php?user=testing');
+    // function delete_com($db) {
+    //     if (isset($_POST['commet'])) {
+    //         $com_id = $_POST['comment_id'];
+    //          $sql = "DELETE FROM `comments` WHERE `comments`.`comment_id` = $com_id";
+    //         //  $db->query($sql, array($com_id));
+    //     }
+    // }
+    // Redirect::to('profile.php?user= .$user->data()->username. ');
 ?>

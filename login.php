@@ -2,39 +2,37 @@
 	require_once 'core/init.php';
 	$user = new User();
 
-	// if ($user->data()->group == 1) {
-	if (Input::exists()) {
-		if (Token::check(Input::get('token'))) {
-			$validate = new Validate();
-			$validation = $validate->check($_POST, array(
-				'username' => array('required' => true),
-				'password' => array('required' => true)
-			));
-			if ($validation->passed()) {
-				$user = new User();
+	
+		if (Input::exists()) {
+			if (Token::check(Input::get('token'))) {
+				$validate = new Validate();
+				$validation = $validate->check($_POST, array(
+					'username' => array('required' => true),
+					'password' => array('required' => true)
+				));
+				if ($validation->passed()) {
+					$user = new User(escape(Input::get('username')));
+					if ($user->data()->group == '1') {
+					$remember = (Input::get('remember') === 'on') ? true : false;
+					$login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
-				$remember = (Input::get('remember') === 'on') ? true : false;
-				$login = $user->login(Input::get('username'), Input::get('password'), $remember);
-
-				if ($login) {
-					/*Redirect::to('cam/cam.php');*/
-					 Redirect::to('index.php'); 
+					if ($login) {
+						/*Redirect::to('cam/cam.php');*/
+						Redirect::to('index.php'); 
+					} else {
+						echo "Invalid login";
+					}
 				} else {
-					echo "Invalid login";
+					echo "Please validate your email";
 				}
-			} else {
-				foreach ($validation->errors() as $error) {
-					echo $error, '<br>';
+				} else {
+					foreach ($validation->errors() as $error) {
+						echo $error, '<br>';
+					}
 				}
+				return false;
 			}
-			return false;
 		}
-	}
-// } else {
-// 	echo '<script language="javascript">';
-// 	echo 'alert("Check email for activation code")';
-// 	echo '</script>';
-// }
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +45,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/login.css" />
 	<style>
-		body{
+		body{    
 			background-color: #ddd;
 		}
 		h2{
