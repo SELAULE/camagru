@@ -57,6 +57,9 @@
         background-color: #fff;
         opacity: 0.7;
     }
+	a {
+        text-decoration: none !important;
+    }
 </style>
 	<script src="js/pic.js"></script>
 	<script src="js/sidebar.js"></script>
@@ -66,6 +69,7 @@
 	<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
   <a href="update.php" class="w3-bar-item w3-button">Update info</a>
   <a href="update_email.php" class="w3-bar-item w3-button">Update email</a>
+  <a href="gallery.php" class="w3-bar-item w3-button">Gallery</a>
   <a href="changepassword.php" class="w3-bar-item w3-button">Update password</a>
   <a href="logout.php" class="w3-bar-item w3-button">Log out</a>
 </div>
@@ -85,6 +89,7 @@
 			</div>
 			<div class="video">
 				<video id='video'>Stream not available...</video>
+				<img id="image" height="375" width="500" class="image" name="image"></img>
 			</div>
 			<div class="emo_list">
 			<img id="e1" src="img/Face_With_Rolling_Eyes_Emoji_large.png" height='50px' width='50px' style="margin: 17px">
@@ -97,10 +102,10 @@
 		</div>
 			<button id="photo_button" class="button">Take Photo</button>
 			<canvas id="canvas2"></canvas>
-			<form action="cam/upload.php" method="post" enctype="multipart/form-data">
+			<!-- <form action="cam/upload.php" method="post" enctype="multipart/form-data"> -->
 			<p>Select image to upload: </p>
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload Image" name="submit">
+        <input type="file" name="fileToUpload" id="uploadspot">
+        <button id="fileToUpload" name="fileToUpload">Upload</button>
 			<button id="save_photo" class="button">Save</button>
 			<canvas id="canvas"></canvas>
 		</div>
@@ -116,10 +121,9 @@
 				for ($i = 0; $i < 3 && $num_images >= 0; $i++) {
 					$img = $images[$num_images]->img_name;
 					$img_id = $images[$num_images]->img_id;
-					echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/><img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
-						<input type='text' name = 'com' placeholder='Comment'></input><input type='submit' name='submiting' value='Post'/>";
+					echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/><img src='$img' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/>";
 						echo "</form> <div id = 'comms'>";
-						getComments($db, $img_id);
+						// getComments($db, $img_id);
 					$num_images--;
 				}
 			?>

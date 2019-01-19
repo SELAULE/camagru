@@ -1,13 +1,16 @@
 function likes(img_id) {
+  // alert(img_id.getAttribute("data-imgid"));
 
     var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.open("POST", "likes.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("").innerHTML = this.responseText;
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+       // document.getElementById("").innerHTML = xmlhttp.responseText;
+       alert(xmlhttp.responseText);
     }
   };
 
-  xmlhttp.open("POST", "whatever.php", true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xmlhttp.send("img_id=" + img_id);
+  xmlhttp.send("img_id=" + img_id.getAttribute("data-imgid"));
 }

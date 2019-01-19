@@ -1,15 +1,17 @@
-
+// window.onload = function() {
     let width = 500,
         height = 0,
         filter = 'none',
         streaming = false;
 
-    const video = document.getElementById('video');
+     video = document.getElementById('video');
     const canvas = document.getElementById('canvas');
     const photos = document.getElementById('photos');
     const photoBut = document.getElementById('photo-but');
     const clearBut = document.getElementById('clear-but');
     const FilterBut = document.getElementById('photo-fil');
+     
+    const fileToUpload = document.getElementById('fileToUpload');
 
     navigator.mediaDevices.getUserMedia({
         audio: false,
@@ -36,6 +38,29 @@
                 streaming = true;
             }
         }, false);
+
+        fileToUpload.addEventListener('click', function(ev) {
+            // ev.preventDefault();
+            alert('hello');
+            uploadspot = document.getElementById('uploadspot');
+            uploadspot.click();
+            uploadspot.addEventListener('change', function(ev) {
+                alert("yay")
+                if (fileToUpload.files && fileToUpload.files[0]) {
+                    var reader = new FileReader()
+                    
+                    reader.onload = function (e) {
+                        document.getElementById('image').setAttribute('src', e.target.results);
+                        document.getElementById('image').style.display = 'block';
+                        document.getElementById('video').style.display = 'none';
+                        video = document.getElementById('image');
+                       
+                    }
+                    reader.readAsDataURL(fileToUpload.files[0]);
+                }
+            })
+
+        })
 
         photoBut.addEventListener('click', function(ev) {
             takepicture();
@@ -73,3 +98,4 @@
                 clearphoto();
             }
         }
+    // }
