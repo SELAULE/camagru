@@ -60,8 +60,7 @@
             
             <br/><i data-imgid=".$img_id." onclick='likes(this)' class='fa fa-thumbs-up'></i>
             <p type='text' id='show'></p>
-            <input type='text' name = 'com'placeholder='Comment'></input>
-            <input type='submit' name='submiting' value='Post'/>";
+            <input type='text' name = 'com'placeholder='Comment'></input><input type='submit' name='submiting' value='Post'/>";
         echo "</form> <div id = 'comms'>";
         getComments($db, $img_id);
         echo "</div></div>";
@@ -121,11 +120,5 @@
 
 </html>
 <script>
-   /* function likes(x) {
-	var	likes = 1;
-		x.classList.toggle("fa-thumbs-down");
-		document.getElementById('show').innerHTML=likes;
-		likes = likes + 1;
-		document.getElementById('show').submit();
-	} */
+   
 </script>

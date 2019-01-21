@@ -5,11 +5,13 @@ window.onload = function()
 		height = 0,
 		streaming = false;
 
-	const video = document.getElementById('video');
+	video = document.getElementById('video');
 	const canvas1 = document.getElementById('canvas');
 	const canvas2 = document.getElementById('canvas2');
 	const photo_button = document.getElementById('photo_button');
 	const save_photo = document.getElementById('save_photo');
+
+	const fileToUpload = document.getElementById('fileToUpload');
 
 	navigator.mediaDevices.getUserMedia({video: true, audio: false})
 
@@ -32,6 +34,33 @@ window.onload = function()
 			streaming = true;
 		}
 	}, false);
+
+	fileToUpload.addEventListener('click', function(ev) {
+		// ev.preventDefault();
+		alert('hello');
+		uploadspot = document.getElementById('uploadspot');
+		uploadspot.click();
+		uploadspot.addEventListener('change', function() {
+			
+			if (uploadspot.files && uploadspot.files[0]) {
+				var reader = new FileReader()
+				// alert("yay")
+				reader.onload = function (e) {
+					alert(e.target.results);
+					document.getElementById('image_upload').setAttribute('src', e.target.result);
+					document.getElementById('image_upload').style.display = 'block';
+					document.getElementById('video').style.display = 'none';
+					video = document.getElementById('image_upload');
+					// alert("done")
+				   
+				}
+				reader.readAsDataURL(uploadspot.files[0]);
+				// alert('fuck');
+			}
+			console.log(uploadspot.files);
+		})
+
+	})
 
 	photo_button.addEventListener('click',function(e)
 	{

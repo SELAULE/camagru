@@ -37,6 +37,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="css/pic.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link>
 <style>
 	.com-box{
         width: 505px;
@@ -89,7 +90,7 @@
 			</div>
 			<div class="video">
 				<video id='video'>Stream not available...</video>
-				<img id="image" height="375" width="500" class="image" name="image"></img>
+				<img id="image_upload" height="375" width="500" class="image" name="image" style="display: none"></img>
 			</div>
 			<div class="emo_list">
 			<img id="e1" src="img/Face_With_Rolling_Eyes_Emoji_large.png" height='50px' width='50px' style="margin: 17px">
@@ -103,8 +104,8 @@
 			<button id="photo_button" class="button">Take Photo</button>
 			<canvas id="canvas2"></canvas>
 			<!-- <form action="cam/upload.php" method="post" enctype="multipart/form-data"> -->
-			<p>Select image to upload: </p>
-        <input type="file" name="fileToUpload" id="uploadspot">
+			<!-- <p>Select image to upload: </p> -->
+        <input type="file" name="uploadspot" id="uploadspot" style="display: none">
         <button id="fileToUpload" name="fileToUpload">Upload</button>
 			<button id="save_photo" class="button">Save</button>
 			<canvas id="canvas"></canvas>

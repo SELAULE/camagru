@@ -36,22 +36,15 @@
     }
 
     if (Input::get('delete')) {
-        echo "IN here";
-        $sql = "DELETE FROM gallery WHERE `user_id` = {$user->data()->user_id} ";
+        // echo "IN here";
+        $sql = "DELETE FROM gallery WHERE `img_id` = {$img_id} ";
         $query = $db->query($sql);
-        $sql_2 = "DELETE FROM likes WHERE likers_id = {$user->data()->user_id} ";
+        $sql_2 = "DELETE FROM likes WHERE `img_id` = {$img_id} ";
         $query_2 = $db->query($sql_2);
-        echo "Successful";
-    } else {
-        echo "Failed";
+        $sql_3 = "DELETE FROM likes WHERE `img_id` = {$img_id} ";
+        $query_3 = $db->query($sql_3);
+        // echo "Successful";
+        Redirect::to('profile.php');
     }
 
-    // function delete_com($db) {
-    //     if (isset($_POST['commet'])) {
-    //         $com_id = $_POST['comment_id'];
-    //          $sql = "DELETE FROM `comments` WHERE `comments`.`comment_id` = $com_id";
-    //         //  $db->query($sql, array($com_id));
-    //     }
-    // }
-    // Redirect::to('profile.php?user= .$user->data()->username. ');
 ?>

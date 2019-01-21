@@ -8,7 +8,12 @@
 	}
 	$user = new User();
 	if ($user->isLoggedIn()) {
-?>	
+?>
+<style>
+	a {
+		text-decoration: none !important;
+    }
+</style>
 	<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
   <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
   <a href="logout.php" class="w3-bar-item w3-button">Log out</a>

@@ -18,7 +18,7 @@
 
 					if ($login) {
 						/*Redirect::to('cam/cam.php');*/
-						Redirect::to('index.php'); 
+						Redirect::to('gallery.php'); 
 					} else {
 						echo "Invalid login";
 					}

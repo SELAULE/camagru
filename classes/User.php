@@ -21,7 +21,7 @@
 						//Logout
 					}
 				} 
-			}else {
+			} else {
 					$this->find($user);
 			}
 		}

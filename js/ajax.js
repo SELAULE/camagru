@@ -11,6 +11,5 @@ function likes(img_id) {
        alert(xmlhttp.responseText);
     }
   };
-
   xmlhttp.send("img_id=" + img_id.getAttribute("data-imgid"));
 }

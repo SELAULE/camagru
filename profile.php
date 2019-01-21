@@ -50,7 +50,7 @@ if (!$username = Input::get('user')) {
         Redirect::to('404.php');
     } else {
         $data = $user->data();
-    } 
+    }
   }
 
   function delete_com($db) {
@@ -81,6 +81,17 @@ function getComments($db, $img_id) {
     }
 }
 
+function getLikes($db, $img_id) {
+    try {
+        $db->get('likes', array ('img_id', '=', $img_id));
+        $result = $db->results();
+        $likes = $db->count();
+        // var_dump ($likes);
+        return $likes;
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+}
 ?>
 <body>
 <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
@@ -108,10 +119,12 @@ function getComments($db, $img_id) {
     for ($i = 0;$num_images >= 0; $i++) {
         $img = $images[$num_images]->img_name;
         $img_id = $images[$num_images]->img_id;
-        // echo $
-        echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/><img src='$img' id=".$img_id." style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/><i onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
-            <input type='text' name = 'com'placeholder='Comment'></input><input type='submit' name='submiting' value='Post'/> <input type='submit' name='delete' value='Delete'/>";
+        // echo $img_id;
+        echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='.$img_id.' value=".$img_id."/><img src='$img' id=".$img_id." style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/>
+        <i data-imgid=".$img_id." onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
+            <input type='text' name = 'com'placeholder='Comment'></input> <input type='submit' name='submiting' value='Post'/> <input type='submit' name='delete' value='Delete'/>";
         echo "</form> <div id = 'comms'>";
+        echo getLikes($db, $img_id);
         getComments($db, $img_id);
         echo "</div></div>";
         $num_images--;
@@ -126,14 +139,14 @@ function getComments($db, $img_id) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Profile</title>
     <style>
-        .fa {
+    .fa {
         font-size: 30px;
         cursor: pointer;
         user-select: none;
     }
 
     .fa:hover {
-    color: darkblue;
+        color: darkblue;
     }
     </style>
 </head>
@@ -142,13 +155,14 @@ function getComments($db, $img_id) {
 </body>
 </html>
 <script src="js/sidebar.js"></script>
+<script src="js/ajax.js"></script>
 
-<script>
+<!-- <script>
    function likes(x) {
 	var	likes = 1;
 		x.classList.toggle("fa-thumbs-down");
 		document.getElementById('show').innerHTML=likes;
-		likes = likes + 1;
+        likes = likes + 1;
 		document.getElementById('show').submit();
 	}
-</script>
+</script> -->
