@@ -41,6 +41,10 @@
 							if ($value != $source[$rule_value]){
 								$this->addError("{$rule_value} must match {$item}");
 							}
+							case 'ascii' :
+							if (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $value)){
+								$this->addError("Password must contain Uppercase, Lowercase and number");
+							}
 							break;
 							case 'valid_email' :
 							if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $value)){

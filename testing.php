@@ -1,22 +1,10 @@
-<script>
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
+<?php 
 
-function success(pos) {
-  var crd = pos.coords;
+	require_once ('core/init.php');
 
-  console.log('Your current position is:');
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
-}
+	$db = DB::getInstance();
+	$user = new User();
 
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
+	echo Token::generate();
 
-navigator.geolocation.getCurrentPosition(success, error, options);
-</script>
+ ?>

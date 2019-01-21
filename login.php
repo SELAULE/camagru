@@ -109,11 +109,11 @@
 			<label for="password">Password</label>
 			<input type="password" name="password" id="password" autocomplete="off" placeholder="password">
 		</div>
-		<div class="field">
+		<!-- <div class="field">
 			<label>
 				<input type="checkbox" name="remember" id="remember">Remember me
 			</label>
-		</div>
+		</div> -->
 		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 		<input type="submit" value="Log in" id="button">
 		<a href="verify_for_password.php">Forgot password</a>

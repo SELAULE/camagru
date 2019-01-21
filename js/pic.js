@@ -37,7 +37,7 @@ window.onload = function()
 
 	fileToUpload.addEventListener('click', function(ev) {
 		// ev.preventDefault();
-		alert('hello');
+		// alert('hello');
 		uploadspot = document.getElementById('uploadspot');
 		uploadspot.click();
 		uploadspot.addEventListener('change', function() {
@@ -46,13 +46,12 @@ window.onload = function()
 				var reader = new FileReader()
 				// alert("yay")
 				reader.onload = function (e) {
-					alert(e.target.results);
+					// alert(e.target.results);
 					document.getElementById('image_upload').setAttribute('src', e.target.result);
 					document.getElementById('image_upload').style.display = 'block';
 					document.getElementById('video').style.display = 'none';
 					video = document.getElementById('image_upload');
 					// alert("done")
-				   
 				}
 				reader.readAsDataURL(uploadspot.files[0]);
 				// alert('fuck');

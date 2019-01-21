@@ -13,14 +13,17 @@
 				),
 				'password' => array(
 					'required' => true,
+					'ascii' => 1,
 					'min' => 6
 				),
 				'Confirm_Password' => array(
 					'required' => true,
+					'ascii' => 1,
 					'matches' => 'password'
 				),
 				'e_mail' => array(
 					'required' => true,
+					'unique' => 'users',
 					'valid_email' => 1,
 					'min' => 2,
 					'max' => 50
@@ -31,34 +34,35 @@
 				//$salt = Hash::salt(32);
 				try{
 				 	$user->create(array(
-						'username' => Input::get('username'),
-						'password' => Hash::make(Input::get('password')),
+						'username' => escape(Input::get('username')),
+						'password' => Hash::make(escape(Input::get('password'))),
 						'salt' => 'salt',
-						'e_mail' => Input::get('e_mail'),
+						'e_mail' => escape(Input::get('e_mail')),
 						'joined' => date('Y-m-d H:i:s'),
 						'group' => 0
 					));
-					$email =  Input::get('e_mail');
+					$email = escape(Input::get('e_mail'));
 
 						$msg = 'Your account has been made, <br /> please verify it by clicking the activation link that has been send to your email.';
-						$hash = Hash::make(Input::get('password'));
-						$username = Input::get('username');
+						$hash = Hash::make(escape(Input::get('password')));
+						$username = escape(Input::get('username'));
 					if (isset($msg)) {
 						echo '<div class="statusmsg">' .$msg. '</div>';
 					}
-				
+
+					$token = Token::generate();
 					$to = $email;
 					$subject = 'Signup / Verify';
 					$message = 'Thanks for signing up!
 					Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
 					 
 					------------------------
-					Username: '.Input::get('username').'
-					Password: '.Input::get('password').'
+					Username: '.escape(Input::get('username')).'
+					Password: '.escape(Input::get('password')).'
 					------------------------
 					 
 					Please click this link to activate your account:
-					http://127.0.0.1:8080/camagru/verify.php/verify.php?email='.$email.'&hash='.$hash.'&username='.$username.'';
+					http://127.0.0.1:8080/camagru/verify.php/verify.php?email='.$email.'&token='.$token.'&username='.$username.'';
 				
 					$headers = 'From:noreply@camagru.com' . "\r\n";
 					mail($to, $subject, $message, $headers);

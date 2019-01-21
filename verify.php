@@ -12,6 +12,7 @@
         // $email =  $user->data()->e_mail;
         $hash = $_GET['hash'];
         $email =  $_GET['email'];
+        $token = Token::check('token');
         // echo $hash;
         // echo $email;
 
