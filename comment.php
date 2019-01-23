@@ -21,8 +21,8 @@
     
         if ($user->data()->notify === "1") {
             $to = $user->data()->e_mail;
-            $subject = "Someone Liked your profile";
-            $message = $user->data()->username."Liked your picture";
+            $subject = "Someone commented on your post";
+            $message = $user->data()->username." commented on your picture";
             $headers = 'From:noreply@camagru.com' . "\r\n"; 
             mail($to, $subject, $message, $headers);
         }
@@ -34,17 +34,19 @@
         echo $sql . "<br>" . $e->getMessage();
         }
     }
-
     if (Input::get('delete')) {
         // echo "IN here";
-        $sql = "DELETE FROM gallery WHERE `img_id` = {$img_id} ";
-        $query = $db->query($sql);
-        $sql_2 = "DELETE FROM likes WHERE `img_id` = {$img_id} ";
-        $query_2 = $db->query($sql_2);
-        $sql_3 = "DELETE FROM likes WHERE `img_id` = {$img_id} ";
-        $query_3 = $db->query($sql_3);
+        //echo '<script>alert('.$img_id.')</script>';
+        $sql = "DELETE FROM `gallery` WHERE `img_id` = {$img_id} ";
+        $db->query($sql);
+         $sql_2 = "DELETE FROM comments WHERE `img_id` = {$img_id} ";
+         $query_2 = $db->query($sql_2);
+         $sql_3 = "DELETE FROM likes WHERE `img_id` = {$img_id} ";
+         $query_3 = $db->query($sql_3);
         // echo "Successful";
-        Redirect::to('profile.php');
+         Redirect::to('profile.php?user='. $user->data()->username);
     }
+    //    Redirect::to('profile.php');
+
 
 ?>

@@ -6,13 +6,14 @@
 
  
 
-    if (isset($_GET['email']) && !empty('email') AND isset($_GET['hash']) && !empty('hash')) {
+    if (isset($_GET['email']) && !empty('email') AND isset($_GET['token']) && !empty('token')) {
         // Validate
         // $hash = $user->data()->password;
         // $email =  $user->data()->e_mail;
-        $hash = $_GET['hash'];
+        // $hash = $_GET['hash'];
         $email =  $_GET['email'];
-        $token = Token::check('token');
+        $token = $_GET['token'];
+        // echo $token."\n";
         // echo $hash;
         // echo $email;
 
@@ -22,8 +23,11 @@
     //         'password' => $hash,
     //         'group' => '0'
     //     ));
-        if ((strcmp($email, $user->data()->e_mail) == 0) && (strcmp($hash, $user->data()->password) == 0))
-        $db->update_group('users', $user->data()->user_id, array('group' => 1));
+        if ((strcmp($email, $user->data()->e_mail) == 0) && (Token::check($token)) == 0) {
+            $db->update_group('users', $user->data()->user_id, array('group' => 1));
+        } else {
+            echo "Invalid token";
+        }
     } else {
         // echo 'Nope';
     }

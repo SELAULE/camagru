@@ -15,6 +15,7 @@
             `e_mail` VARCHAR(50) NOT NULL,
             `joined` DATETIME NOT NULL,
             `group` INT NOT NULL,
+            `notify` int(1) NOT NULL DEFAULT '1',
             PRIMARY KEY(`user_id`)
         )");
         $dbh->exec("CREATE TABLE `camagru`.`group`(

@@ -120,8 +120,8 @@ function getLikes($db, $img_id) {
     for ($i = 0;$num_images >= 0; $i++) {
         $img = $images[$num_images]->img_name;
         $img_id = $images[$num_images]->img_id;
-        // echo $img_id;
-        echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='.$img_id.' value=".$img_id."/><img src='$img' id=".$img_id." style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/>
+        //echo '<script>alert('.$img_id.')</script>';
+        echo "<div style = 'float :left;'> <form action='comment.php' method='post'><input type='hidden' name='img_id' value=".$img_id."/><img src='$img' id=".$img_id." style='margin: 5px; margin-bottom: 1px; margin-top: 1px'><br/>
         <i data-imgid=".$img_id." onclick='likes(this)' class='fa fa-thumbs-up'></i><p type='text' id='show'></p>
             <input type='text' name = 'com'placeholder='Comment'></input> <input type='submit' name='submiting' value='Post'/> <input type='submit' name='delete' value='Delete'/>";
         echo "</form> <div id = 'comms'>";

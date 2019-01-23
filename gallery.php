@@ -28,12 +28,26 @@
             echo $sql . "<br>" . $e->getMessage();
         }
     }
+
+    function getLikes($db, $img_id) {
+        try {
+            $db->get('likes', array ('img_id', '=', $img_id));
+            $result = $db->results();
+            $likes = $db->count();
+            // var_dump ($likes);
+            return $likes;
+        } catch(PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+        }
+    }
+    
     ?>
     <body>
 <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
 	<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
     <a href="newpic.php" class="w3-bar-item w3-button">New pic</a>
   <a href="update.php" class="w3-bar-item w3-button">Update info</a>
+  <a href="notify.php" class="w3-bar-item w3-button">Notifications</a>
   <a href="update_email.php" class="w3-bar-item w3-button">Update email</a>
   <a href="changepassword.php" class="w3-bar-item w3-button">Update password</a>
   <a href="logout.php" class="w3-bar-item w3-button">Log out</a>
@@ -61,8 +75,9 @@
             
             <br/><i data-imgid=".$img_id." onclick='likes(this)' class='fa fa-thumbs-up'></i>
             <p type='text' id='show'></p>
-            <input type='text' name = 'com'placeholder='Comment'></input><input type='submit' name='submiting' value='Post'/>";
+            <input type='text' name = 'com'placeholder='Comment' required></input><input type='submit' name='submiting' value='Post'/>";
         echo "</form> <div id = 'comms'>";
+        echo getLikes($db, $img_id);
         getComments($db, $img_id);
         echo "</div></div>";
         $num_images--;

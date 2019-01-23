@@ -1,10 +1,18 @@
 <?php
-    require_once 'core/init.php';
-    $db = DB::getInstance();
-    $user = new User();
+function checknotify()
+{
+    global $user;
 
-    echo $user->data()->img_id;
-    /* function delete_img ($img_id) {
-        $db->delete($user->data()->img_id);
-    } */
+    echo $user->data()->notify;
+}
+
+function notify()
+{
+    global $user;
+    $user->update(array(
+        'notify' => input::get('notify'),
+    ));
+    echo "Update successful";
+}
+
 ?>

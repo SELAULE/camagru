@@ -8,6 +8,8 @@
 	}
 	$user = new User();
 	if ($user->isLoggedIn()) {
+		Redirect::to('gallery.php');
+	
 ?>
 <style>
 	a {
@@ -16,9 +18,12 @@
 </style>
 	<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
   <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
-  <a href="logout.php" class="w3-bar-item w3-button">Log out</a>
+  <a href="newpic.php" class="w3-bar-item w3-button">New pic</a>
   <a href="update.php" class="w3-bar-item w3-button">Update info</a>
+  <a href="gallery.php" class="w3-bar-item w3-button">Gallery</a>
+  <a href="update_email.php" class="w3-bar-item w3-button">Update email</a>
   <a href="changepassword.php" class="w3-bar-item w3-button">Update password</a>
+  <a href="logout.php" class="w3-bar-item w3-button">Log out</a>
 </div>
 
 <div class="w3-teal">
