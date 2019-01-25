@@ -40,7 +40,7 @@ body{
     <input type='text' name='e_mail' id='e-mail' value='' placeholder='e-mail'>
     <input type='submit' value='Send' id='reg-butt'>
 </form></div>";
-    $email =  Input::get('e_mail');
+    $email =  escape(Input::get('e_mail'));
 
     if (isset($email) && !empty($email)) {
         $msg = 'Your account has been made, <br /> please verify it by clicking the activation link that has been send to your email.';
@@ -59,7 +59,7 @@ body{
     ------------------------
      
     Please click this link to change your password:
-    http://127.0.0.1:8080/camagru/changepassword.php/changepassword.php?email=".$email;
+    http://127.0.0.1:8080/changepassword.php?email=".$email;
 
     $headers = 'From:noreply@camagru.com' . "\r\n";
     mail($to, $subject, $message, $headers);

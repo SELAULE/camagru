@@ -12,19 +12,24 @@
 				));
 				if ($validation->passed()) {
 					$user = new User(escape(Input::get('username')));
+					if ($user->data() != NULL) {
 					if ($user->data()->group == '1') {
 					$remember = (Input::get('remember') === 'on') ? true : false;
 					$login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
 					if ($login) {
-						/*Redirect::to('cam/cam.php');*/
+						
 						Redirect::to('gallery.php'); 
 					} else {
 						echo "Invalid login";
 					}
 				} else {
 					echo "Please validate your email";
-				}
+				} 
+			}
+			else{
+				echo "No user found";
+			}
 				} else {
 					foreach ($validation->errors() as $error) {
 						echo $error, '<br>';
@@ -116,7 +121,7 @@
 		</div> -->
 		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 		<input type="submit" value="Log in" id="button">
-		<a href="verify_for_password.php">Forgot password</a>
+		<a href="webupload.php">Forgot password</a>
 
 	</form>
 	</div>

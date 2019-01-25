@@ -9,6 +9,7 @@
 					'required' => true,
 					'min' => 2,
 					'max' => 20,
+					'spaces' => true,
 					'unique' => 'users'
 				),
 				'password' => array(
@@ -25,8 +26,8 @@
 					'required' => true,
 					'unique' => 'users',
 					'valid_email' => 1,
-					'min' => 2,
-					'max' => 50
+					'min' => 2
+					// 'max' => 50
 				),
 			)); 
 			if ($validation->passed()) {
@@ -62,7 +63,7 @@
 					------------------------
 					 
 					Please click this link to activate your account:
-					http://127.0.0.1:8080/camagru/verify.php/verify.php?email='.$email.'&token='.$token.'&username='.$username.'';
+					http://127.0.0.1:8080/verify.php?email='.$email.'&token='.$token.'&username='.$username.'';
 				
 					$headers = 'From:noreply@camagru.com' . "\r\n";
 					mail($to, $subject, $message, $headers);

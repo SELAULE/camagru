@@ -25,6 +25,7 @@
     //     ));
         if ((strcmp($email, $user->data()->e_mail) == 0) && (Token::check($token)) == 0) {
             $db->update_group('users', $user->data()->user_id, array('group' => 1));
+            header('location:login.php');
         } else {
             echo "Invalid token";
         }
