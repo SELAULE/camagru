@@ -6,7 +6,7 @@
 
 	if (!$user->isLoggedIn()) {
 		Redirect::to('login.php');
-	}
+	} 
 	function getComments($db, $img_id) {
 		try {
 			$results = "SELECT comment FROM comments WHERE img_id = $img_id";

@@ -16,7 +16,7 @@ body{
 		margin: 8px 0;
 		box-sizing: border-box;
         }
-        #reg-butt{
+        #reg-butt {
             background-color: #165882;
 			border: none;
 			color: white;

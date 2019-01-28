@@ -101,7 +101,7 @@
 			text-shadow: 4px 4px 4px #aaa;
 			text-align: center;
 		}
-		.form{
+		.form {
 			margin: auto;
 			margin-top: 40px;
 			width: 40%;

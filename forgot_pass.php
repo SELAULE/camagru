@@ -4,7 +4,7 @@
 body{
    background-color: #ddd;
 }
-   .form{
+   .form {
            margin: auto;
            margin-top: 40px;
            width: 40%;

@@ -65,20 +65,9 @@ body{
     mail($to, $subject, $message, $headers);
 
     if (isset($_GET['email']) && !empty('email')/*  AND isset($_GET['hash']) && !empty('hash') */) {
-        // Validate
-        // $hash = $user->data()->password;
-        // $email =  $user->data()->e_mail;
-        //$hash = $_GET['hash'];
-        $email =  $_GET['email'];
-        // echo $hash;
-        // echo $email;
 
-    //     $sql = "SELECT e_mail, password, group FROM users WHERE e_mail='".$email."' AND password='".$hash."' AND group='0'";
-    //     $match = $db->query($sql, array(
-    //         'e_mail' => $email,
-    //         'password' => $hash,
-    //         'group' => '0'
-    //     ));
+        $email =  $_GET['email'];
+
         if ((strcmp($email, $user->data()->e_mail) == 0)/*  && (strcmp($hash, $user->data()->password) == 0) */)
         $db->update_group('users', $user->data()->user_id, array('group' => 1));
     } else {

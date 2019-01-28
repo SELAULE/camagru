@@ -4,4 +4,5 @@
     $user->logout();
 
     Redirect::to('index.php');
+    
 ?>

@@ -16,7 +16,7 @@
         video: {
             facingMode: "user"
         }        
-    })
+    }) 
         .then(stream =>  {
             video.srcObject = stream;
             

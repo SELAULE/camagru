@@ -40,7 +40,7 @@
             echo $sql . "<br>" . $e->getMessage();
         }
     }
-    
+
     ?>
     <body>
 <!-- <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">

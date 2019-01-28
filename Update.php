@@ -16,24 +16,6 @@
 		Redirect::to('index.php');
 	}
 
-// 	else if (isset($_POST['notify'])) {
-// 		notify();
-// 	} else if (isset($_POST['mypostname'])) {
-// 		checknotify();
-// 	}
-
-// 	function checknotify() {
-//     echo $user->data()->notify;
-// }
-// 	function notify() {
-// 	global $user;
-// 	// if ()
-//     $user->update(array(
-//         'notify' => input::get('notify'),
-//     ));
-//     echo "Update successful";
-// }
-	
 
 	if (Input::exists()) {
 		if (Token::check(Input::get('token'))) {

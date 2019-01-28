@@ -17,7 +17,7 @@ if ($user->isLoggedIn()) {
         $message = $user->data()->username."Liked your picture";
         $headers = 'From:noreply@camagru.com' . "\r\n"; 
         mail($to, $subject, $message, $headers);
-        //    echo "email sent";
+        
     }
 } else {
     Redirect::to('login.php');

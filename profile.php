@@ -40,6 +40,7 @@
 <?php
 require_once 'core/init.php';
 $db = DB::getinstance();
+
 if (!$username = Input::get('user')) {
     Redirect::to('index.php');
 } 

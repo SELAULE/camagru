@@ -2,8 +2,7 @@
     require_once 'core/init.php';
     $db = DB::getInstance();
     $user = new User();
-    // $db->get("gallery");
-    // $images = $db->results();
+
     $fetch = "SELECT * FROM gallery";
     $db->query($fetch);
     $images = $db->results();

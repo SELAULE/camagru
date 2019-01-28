@@ -13,4 +13,5 @@ function getComments() {
         echo $sql . "<br>";
     }
 }
+
 ?>

@@ -18,7 +18,6 @@
                 'friend_id' => $user->data()->user_id,
                 'comment' => $comment,
                 'img_id' => $img_id));
-    
         if ($user->data()->notify === "1") {
             $to = $user->data()->e_mail;
             $subject = "Someone commented on your post";

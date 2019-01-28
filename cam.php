@@ -63,7 +63,7 @@
 			<p>Select image to upload: </p>
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="Upload Image" name="submit">
-    </form>
+    </form> 
 	</div>
 	
 	<div class="bottom-con">

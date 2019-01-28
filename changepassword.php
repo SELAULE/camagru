@@ -15,7 +15,7 @@
 		input[type=text] {
 		width: 70%;
 		padding: 12px 20px;
-		margin: 8px 0;
+		margin: 8px 0; 
 		box-sizing: border-box;
 		}
 		input[type=password], #remember {

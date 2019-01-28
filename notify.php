@@ -16,7 +16,6 @@ if (!$user->isLoggedIn()) {
 		checknotify();
 	}
 
-
 	function notify() {
 	global $user;
 	// if ()

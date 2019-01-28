@@ -30,7 +30,7 @@ if ($imageFileType != "png" && $imageFileType != "jpg" && $imageFileType != "jpe
     $uploadOk = 0;
 }
 
-if ($uploadOk == 0){
+if ($uploadOk == 0) {
     echo "Error uploading image";
 } else {
     if (move_uploaded_file ($_FILES["fileToUpload"]["tmp_name"], $target_file)) {

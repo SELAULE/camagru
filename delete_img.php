@@ -6,8 +6,7 @@ function checknotify()
     echo $user->data()->notify;
 }
 
-function notify()
-{
+function notify() {
     global $user;
     $user->update(array(
         'notify' => input::get('notify'),

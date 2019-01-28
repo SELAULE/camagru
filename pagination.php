@@ -13,6 +13,7 @@
         } else {
             $page = $_GET['page'];
         }
+        
         $this_page_first_result = (intval($page) - 1) * $items_per_page;
         $sql = "SELECT * FROM gallery ORDER BY time_stamp DESC LIMIT " . $items_per_page . " OFFSET " . $this_page_first_result ;
         $db->query($sql);

@@ -15,5 +15,5 @@ require_once 'core/init.php';
 
     <div class="buttons">
         <a class="button" href="index.php">Go to homepage</a>
-    </div>
+    </div> 
 </div>
